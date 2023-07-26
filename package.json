@@ -1,6 +1,6 @@
 {
   "name": "@diamondlightsource/ui-components",
-  "version": "1.0.0",
+  "version": "1.0.0-rc.1",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,6 @@
     "format": "prettier --jsx-single-quote --print-width 100 --write src/**/*.{ts,tsx,css}"
   },
   "dependencies": {
-    "@rollup/plugin-image": "^3.0.2",
     "@visx/axis": "^3.3.0",
     "@visx/event": "^3.3.0",
     "@visx/grid": "^3.3.0",
@@ -24,7 +23,8 @@
     "@visx/stats": "^3.3.0",
     "@visx/tooltip": "^3.3.0",
     "@visx/voronoi": "^3.3.0",
-    "apng-js": "^1.1.1"
+    "apng-js": "^1.1.1",
+    "react-icons": "^4.6.0"
   },
   "eslintConfig": {
     "extends": [
@@ -60,8 +60,7 @@
     "@emotion/styled": "^11.10.4",
     "framer-motion": "^10.2.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.6.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
@@ -75,6 +74,7 @@
     "@emotion/styled": "^11.11.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@rollup/plugin-commonjs": "^25.0.3",
+    "@rollup/plugin-image": "^3.0.2",
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-typescript": "^11.1.2",
     "@storybook/addon-actions": "^7.0.27",
