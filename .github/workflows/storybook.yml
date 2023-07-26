@@ -1,0 +1,45 @@
+name: Storybook
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    # pull requests are a duplicate of a branch push if within the same repo.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v3.5.1
+
+    - name: Setup Node.js Environment
+      uses: actions/setup-node@v3.7.0
+      with:
+        cache: yarn
+
+    - name: Install Yarn Dependencies 
+      run: yarn install
+
+    - name: Build Storybook
+      run: yarn storybook-build
+
+    - name: Upload Pages Artifact
+      uses: actions/upload-pages-artifact@v2.0.0
+      with:
+        path: storybook-static
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permission:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2.0.3
