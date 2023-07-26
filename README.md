@@ -55,4 +55,4 @@ For examples of how to use components, you can run storybook with yarn storybook
 
 ## Testing
 
-- Run :code:`yarn test`
+- Run `yarn test`
