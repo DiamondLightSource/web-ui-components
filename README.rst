@@ -44,6 +44,7 @@ Usage
 1. Wrap your application with a Chakra Provider and apply the theme (this is application/framework specific, methods may vary):
 
 .. code-block:: javascript
+
     import { theme } from "@diamondlightsource/ui-components";
 
     <ChakraProvider theme={theme}>
@@ -52,6 +53,7 @@ Usage
 2. Use components
 
 .. code-block:: javascript
+    
     import { theme } from "@diamondlightsource/ui-components";
 
     <Pagination
