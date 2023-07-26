@@ -1,0 +1,39 @@
+image: node
+
+stages:
+  - test
+  - deploy
+
+install-job:
+  stage: test
+  tags:
+    - argus
+  script:
+    - yarn install
+
+unit-test-job:
+  stage: test
+  tags: 
+    - argus
+  before_script:
+    - yarn install
+  script:
+    - yarn run test --verbose
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+
+#deploy:
+#  stage: deploy
+#  before_script:
+#    - yarn install
+#  tags:
+#    - argus
+#  variables:
+#  script:
+#    - yarn build
+#    - echo "//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
+#    - npm publish
