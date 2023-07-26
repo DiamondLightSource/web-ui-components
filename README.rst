@@ -1,7 +1,7 @@
 Web UI Components Library
 ===========================
 
-|code_ci| |code_cov|
+|code_ci| |license|
 
 ============== ==============================================================
 Source code    https://github.com/DiamondLightSource/web-ui-components
@@ -14,6 +14,7 @@ Installing
 ==========
 
 .. code-block:: bash
+
     yarn add @diamondlightsource/ui-components
 
 ==========
@@ -53,7 +54,7 @@ Usage
 2. Use components
 
 .. code-block:: javascript
-    
+
     import { theme } from "@diamondlightsource/ui-components";
 
     <Pagination
@@ -69,8 +70,8 @@ Testing
 
 - Run :code:`yarn test`
 
-.. |code_ci| image:: https://github.com/DiamondLightSource/pato-frontend/actions/workflows/node.js.yml/badge.svg
-    :target: https://github.com/DiamondLightSource/pato-frontend/actions/workflows/node.js.yml
+.. |code_ci| image:: https://github.com/DiamondLightSource/web-ui-components/actions/workflows/node.js.yml/badge.svg
+    :target: https://github.com/DiamondLightSource/web-ui-components/actions/workflows/node.js.yml
     :alt: Code CI
 
 .. |license| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
