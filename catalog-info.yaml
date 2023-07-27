@@ -7,7 +7,7 @@ metadata:
   annotations:
     diamond.ac.uk/viewdocs-url: https://diamondlightsource.github.io/web-ui-components/
     github.com/project-slug: DiamondLightSource/web-ui-components
-  spec:
-    type: library
-    lifecycle: production
-    owner: user:yrh59256
+spec:
+  type: library
+  lifecycle: production
+  owner: user:yrh59256
