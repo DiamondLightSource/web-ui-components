@@ -1,5 +1,5 @@
 apiVersion: backstage.io/v1alpha1
-knd: Component
+kind: Component
 metadata:
   name: web-ui-components
   title: Web UI Components
