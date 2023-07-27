@@ -22,7 +22,7 @@ jobs:
       run: yarn install
 
     - name: Build Storybook
-      run: yarn storybook-build
+      run: yarn build-storybook
 
     - name: Upload Pages Artifact
       uses: actions/upload-pages-artifact@v2.0.0
