@@ -1,0 +1,15 @@
+{
+	"name": "DLS Web UI Components",
+	"build": {
+		"context": ".",
+		"dockerfile": "Dockerfile"
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {}
+	},
+	"runArgs": [
+		"--security-opt=label=type:container_runtime_t"
+	],
+	"workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
+	"workspaceFolder": "${localWorkspaceFolder}"
+}
