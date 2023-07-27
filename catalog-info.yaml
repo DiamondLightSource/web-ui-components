@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+knd: Component
+metadata:
+  name: web-ui-components
+  title: Web UI Components
+  description: A collection of React components for building Web User Interfaces
+  annotations:
+    diamond.ac.uk/viewdocs-url: https://diamondlightsource.github.io/web-ui-components/
+    github.com/project-slug: DiamondLightSource/web-ui-components
+  spec:
+    type: library
+    lifecycle: production
+    owner: user:yrh59256
