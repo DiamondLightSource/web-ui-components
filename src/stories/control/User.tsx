@@ -14,8 +14,8 @@ import { AuthState } from "utils/interfaces";
 
 export interface UserProps {
   user: AuthState | null;
-  onLogin: () => void;
-  onLogout: () => void;
+  onLogin?: () => void;
+  onLogout?: () => void;
 }
 
 export const User = ({ user, onLogin, onLogout }: UserProps) => {
@@ -47,8 +47,8 @@ export const User = ({ user, onLogin, onLogout }: UserProps) => {
             </HStack>
           </MenuButton>
           <MenuList>
-            <MenuItem aria-label='Logout'>
-              <Link onClick={onLogout}>Logout</Link>
+            <MenuItem onClick={onLogout} aria-label='Logout'>
+              <Link>Logout</Link>
             </MenuItem>
           </MenuList>
         </Menu>
