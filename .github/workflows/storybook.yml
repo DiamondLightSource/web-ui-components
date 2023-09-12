@@ -33,7 +33,7 @@ jobs:
 
   deploy:
     needs: build
-    # if: ${{ success() && github.ref == 'refs/heads/master' }}
+    if: github.ref == 'refs/heads/master'
     permissions:
       pages: write
       id-token: write
