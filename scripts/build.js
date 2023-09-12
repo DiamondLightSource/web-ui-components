@@ -1,4 +1,4 @@
-'use strict';
+
 
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'production';
@@ -145,13 +145,6 @@ function build(previousFileSizes) {
         }
 
         let errMessage = err.message;
-
-        // Add additional information for postcss errors
-        if (Object.prototype.hasOwnProperty.call(err, 'postcssNode')) {
-          errMessage +=
-            '\nCompileError: Begins at CSS selector ' +
-            err['postcssNode'].selector;
-        }
 
         messages = formatWebpackMessages({
           errors: [errMessage],

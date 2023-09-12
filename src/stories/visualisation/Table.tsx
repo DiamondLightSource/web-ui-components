@@ -1,7 +1,7 @@
-import { Box, Heading, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box, BoxProps, Heading, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import { useCallback } from "react";
 
-export interface TableProps {
+export interface TableProps extends Omit<BoxProps, "onClick"> {
   /** Table data */
   data: Record<string, any>[] | null;
   /** Table headers and mapping to record keys */
@@ -10,9 +10,11 @@ export interface TableProps {
   onClick?: (item: Record<string, any>, index: number) => void;
   /** Label to be used when displaying "no data available" message */
   label?: string;
+  /** Styling variant to use for the rows */
+  rowVariant?: string;
 }
 
-const TableView = ({ data, headers, onClick, label = "data" }: TableProps) => {
+const TableView = ({ data, headers, onClick, label = "data", rowVariant="diamondStriped", ...props }: TableProps) => {
   const handleClick = useCallback(
     (row: React.MouseEvent<HTMLTableRowElement>) => {
       if (onClick && data) {
@@ -27,13 +29,13 @@ const TableView = ({ data, headers, onClick, label = "data" }: TableProps) => {
   );
 
   return (
-    <Box overflowY='scroll'>
+    <Box overflowY='scroll' {...props}>
       {data === null || data.length === 0 ? (
         <Heading py={10} w='100%' variant='notFound'>
           No {label.toLowerCase()} found
         </Heading>
       ) : (
-        <Table size='sm' variant='diamondStriped'>
+        <Table size='sm' variant={rowVariant}>
           <Thead>
             <Tr>
               {headers.map((header) => (

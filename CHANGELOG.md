@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.2] - 2023-09-12
+
+### Changed
+
+- Table and Navbar components now accept all box properties
+
 ## [1.0.1] - 2023-07-31
 
 ### Added
