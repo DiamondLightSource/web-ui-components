@@ -24,7 +24,7 @@
     "baseUrl": "src"
   },
   "include": [
-    "src", "src/declaration.d.ts"
+    "src", "src/declaration.d.ts", "config/jest/jest.setup.ts"
   ],
   "rootDir": "src"
 }

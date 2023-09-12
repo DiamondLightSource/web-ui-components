@@ -8,7 +8,7 @@ describe("Box Plot", () => {
         data={[{ min: 1, max: 10, median: 5, q1: 3, q3: 6, label: "test" }]}
         width={100}
         height={100}
-      />
+      />,
     );
     expect(screen.getAllByText("test").length).toBe(2);
   });
@@ -22,7 +22,7 @@ describe("Box Plot", () => {
         ]}
         width={100}
         height={100}
-      />
+      />,
     );
     expect(screen.getAllByTestId("box-item").length).toBe(2);
   });
@@ -34,7 +34,7 @@ describe("Box Plot", () => {
         options={{ y: { label: "axis label" } }}
         width={100}
         height={100}
-      />
+      />,
     );
     expect(screen.getByText("axis label")).toBeInTheDocument();
   });
@@ -45,7 +45,7 @@ describe("Box Plot", () => {
         data={[{ min: 1, max: 10, median: 5, q1: 3, q3: 6, label: "test" }]}
         width={100}
         height={100}
-      />
+      />,
     );
     const box = screen.getByLabelText("Box");
     fireEvent.mouseOver(box);
@@ -59,7 +59,7 @@ describe("Box Plot", () => {
         data={[{ min: 1, max: 10, median: 5, q1: 3, q3: 6, label: "test" }]}
         width={100}
         height={100}
-      />
+      />,
     );
     const box = screen.getByLabelText("Box");
     fireEvent.mouseOver(box);
@@ -79,7 +79,7 @@ describe("Box Plot", () => {
         ]}
         width={100}
         height={100}
-      />
+      />,
     );
 
     expect(screen.getByText("0")).toBeInTheDocument();
@@ -96,7 +96,7 @@ describe("Box Plot", () => {
         options={{ y: { domain: { min: 0, max: 5 } } }}
         width={100}
         height={100}
-      />
+      />,
     );
 
     expect(screen.getByText("0.0")).toBeInTheDocument();
@@ -110,7 +110,7 @@ describe("Box Plot", () => {
         options={{ y: { domain: { min: 0, max: 5 } } }}
         width={100}
         height={100}
-      />
+      />,
     );
 
     expect(screen.queryByTestId("box-item")).not.toBeInTheDocument();

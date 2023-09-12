@@ -35,7 +35,7 @@ describe("Debounced Input", () => {
       () => {
         expect(callback).toHaveBeenCalledWith("test");
       },
-      { timeout: 1200 }
+      { timeout: 1200 },
     );
   });
 });

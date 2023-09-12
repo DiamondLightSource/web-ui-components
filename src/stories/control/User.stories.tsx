@@ -12,9 +12,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const LoggedOut: Story = {
-  args: { onLogin: () => {}, onLogout: () => {}, user: null },
+  args: { user: null },
 };
 
 export const LoggedIn: Story = {
-  args: { onLogin: () => {}, onLogout: () => {}, user: { name: "Name", fedid: "FedID" } },
+  args: { user: { name: "Name", fedid: "FedID" } },
 };

@@ -35,3 +35,19 @@ export const NoData: Story = {
     ],
   },
 };
+
+export const StyleVariant: Story = {
+  args: {
+    data: [
+      { name: "John", surname: "Doe", id: 90 },
+      { name: "James", surname: "Deer", id: 95 },
+      { name: "Maria", surname: "da Silva", id: 98 },
+    ],
+    headers: [
+      { key: "name", label: "name" },
+      { key: "surname", label: "Surname" },
+      { key: "id", label: "ID" },
+    ],
+    rowVariant: "simple",
+  },
+};

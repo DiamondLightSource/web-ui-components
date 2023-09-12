@@ -77,7 +77,7 @@ export const BarChart = withTooltip<BarProps, BarStats>(
           range: [yMax, 0],
           nice: true,
         }),
-      [yMax, config]
+      [yMax, config],
     );
 
     const lateralPadding = useMemo(() => {
@@ -92,7 +92,7 @@ export const BarChart = withTooltip<BarProps, BarStats>(
           domain: widestBarGroup.map(label),
           padding: 0,
         }),
-      [widestBarGroup, groupWidth, lateralPadding]
+      [widestBarGroup, groupWidth, lateralPadding],
     );
 
     return (
@@ -166,5 +166,5 @@ export const BarChart = withTooltip<BarProps, BarStats>(
         )}
       </div>
     );
-  }
+  },
 );

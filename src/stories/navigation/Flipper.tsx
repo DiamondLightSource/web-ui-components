@@ -35,7 +35,7 @@ export const Flipper = ({
 
   const handleDebouncedPageChange = useMemo(
     () => debounce((page: number) => onChangeEnd!(page)),
-    [onChangeEnd]
+    [onChangeEnd],
   );
 
   const setPage = useCallback(
@@ -54,12 +54,12 @@ export const Flipper = ({
         setValue(newPage.toString());
       }
     },
-    [onChange, page, handleDebouncedPageChange, onChangeEnd]
+    [onChange, page, handleDebouncedPageChange, onChangeEnd],
   );
 
   const boundaryCheck = useCallback(
     (value?: number) => value !== undefined && value > 0 && value <= total,
-    [total]
+    [total],
   );
 
   useEffect(() => {
@@ -112,7 +112,7 @@ export const Flipper = ({
         setPage(newPage);
       }
     },
-    [setPage, total]
+    [setPage, total],
   );
 
   if (value === undefined) {

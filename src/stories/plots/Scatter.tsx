@@ -79,7 +79,7 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
           config.x.domain.min <= x(d) &&
           config.x.domain.max >= x(d) &&
           config.y.domain.min <= y(d) &&
-          config.y.domain.max >= y(d)
+          config.y.domain.max >= y(d),
       );
 
       if (!decimationThreshold || !width) {
@@ -91,7 +91,7 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
 
       // Calculate optimisation lookahead window
       const lookahead = Math.floor(
-        boundaryCheckedData.length / width / (config.points.dotRadius * 3)
+        boundaryCheckedData.length / width / (config.points.dotRadius * 3),
       );
 
       if (lookahead === 0) {
@@ -123,7 +123,7 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
           domain: [config.x.domain.min, config.x.domain.max],
           range: [0, xMax],
         }),
-      [xMax, config]
+      [xMax, config],
     );
 
     const yScale = useMemo(
@@ -133,7 +133,7 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
           range: [yMax, 0],
           nice: true,
         }),
-      [yMax, config]
+      [yMax, config],
     );
 
     const voronoiLayout = useMemo(
@@ -144,7 +144,7 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
           width,
           height,
         })(decimatedData),
-      [width, height, xScale, yScale, decimatedData]
+      [width, height, xScale, yScale, decimatedData],
     );
 
     const findClosest = useCallback(
@@ -155,10 +155,10 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
         return voronoiLayout.find(
           point.x - defaultMargin.left,
           point.y - defaultMargin.top,
-          neighborRadius
+          neighborRadius,
         );
       },
-      [voronoiLayout]
+      [voronoiLayout],
     );
 
     const handleMouseClick = useCallback(
@@ -168,7 +168,7 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
           onPointClicked(x(closest.data), y(closest.data));
         }
       },
-      [findClosest, onPointClicked]
+      [findClosest, onPointClicked],
     );
 
     const handleMouseMove = useCallback(
@@ -183,7 +183,7 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
           });
         }
       },
-      [xScale, yScale, showTooltip, findClosest]
+      [xScale, yScale, showTooltip, findClosest],
     );
 
     const handleMouseLeave = useCallback(() => {
@@ -252,5 +252,5 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
         )}
       </div>
     );
-  }
+  },
 );

@@ -16,7 +16,7 @@ describe("Scatter Plot", () => {
         ]}
         width={100}
         height={100}
-      />
+      />,
     );
     expect(screen.getAllByTestId("dot").length).toBe(2);
   });
@@ -31,7 +31,7 @@ describe("Scatter Plot", () => {
         options={{ x: { label: "test" } }}
         width={100}
         height={100}
-      />
+      />,
     );
     expect(screen.getAllByText("test").length).toBe(2);
   });
@@ -67,7 +67,7 @@ describe("Scatter Plot", () => {
         options={{ x: { domain: { min: 0, max: 20 } } }}
         width={1000}
         height={1000}
-      />
+      />,
     );
 
     expect(screen.getAllByText("20").length).toBe(2);
@@ -81,7 +81,7 @@ describe("Scatter Plot", () => {
         options={{ y: { domain: { min: 0, max: 20 } } }}
         width={1000}
         height={1000}
-      />
+      />,
     );
 
     expect(screen.getAllByText("20").length).toBe(2);
@@ -95,7 +95,7 @@ describe("Scatter Plot", () => {
         options={{ x: { domain: { min: 0, max: 20 } } }}
         width={1000}
         height={1000}
-      />
+      />,
     );
 
     expect(screen.queryByTestId("dot")).not.toBeInTheDocument();
@@ -104,7 +104,12 @@ describe("Scatter Plot", () => {
   it("should fire event when point is clicked", () => {
     const callback = jest.fn();
     render(
-      <ScatterPlot data={[{ x: 522, y: 999 }]} width={100} height={100} onPointClicked={callback} />
+      <ScatterPlot
+        data={[{ x: 522, y: 999 }]}
+        width={100}
+        height={100}
+        onPointClicked={callback}
+      />,
     );
 
     const graph = screen.getByLabelText("Graph");
@@ -126,7 +131,7 @@ describe("Scatter Plot", () => {
         height={4}
         options={{ points: { dotRadius: 0.3 } }}
         decimationThreshold={0.1}
-      />
+      />,
     );
 
     expect(screen.getAllByTestId("dot").length).toBe(3);
@@ -143,7 +148,7 @@ describe("Scatter Plot", () => {
         width={2}
         height={2}
         decimationThreshold={0.1}
-      />
+      />,
     );
 
     expect(screen.getAllByTestId("dot").length).toBe(2);
@@ -160,7 +165,7 @@ describe("Scatter Plot", () => {
         width={1000}
         height={1000}
         decimationThreshold={0.1}
-      />
+      />,
     );
 
     expect(screen.getAllByTestId("dot").length).toBe(2);
@@ -177,7 +182,7 @@ describe("Scatter Plot", () => {
         width={2}
         height={2}
         decimationThreshold={0.1}
-      />
+      />,
     );
 
     expect(screen.getAllByTestId("dot").length).toBe(2);
@@ -194,7 +199,7 @@ describe("Scatter Plot", () => {
         height={300}
         options={{ points: { dotRadius: 0.3 } }}
         decimationThreshold={0.1}
-      />
+      />,
     );
 
     expect(screen.getAllByTestId("dot").length).toBe(2);

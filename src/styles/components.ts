@@ -1,5 +1,16 @@
-import { defineStyleConfig, defineStyle, createMultiStyleConfigHelpers, UseToastOptions } from "@chakra-ui/react";
-import { cardAnatomy, tabsAnatomy, inputAnatomy, numberInputAnatomy, selectAnatomy } from "@chakra-ui/anatomy";
+import {
+  defineStyleConfig,
+  defineStyle,
+  createMultiStyleConfigHelpers,
+  UseToastOptions,
+} from "@chakra-ui/react";
+import {
+  cardAnatomy,
+  tabsAnatomy,
+  inputAnatomy,
+  numberInputAnatomy,
+  selectAnatomy,
+} from "@chakra-ui/anatomy";
 
 const baseToast: UseToastOptions = {
   id: "main-toast",
@@ -98,7 +109,9 @@ const CardBody = defineStyleConfig({
   },
 });
 
-const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(cardAnatomy.keys);
+const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(
+  cardAnatomy.keys,
+);
 
 const baseCardStyle = definePartsStyle({
   container: {
@@ -199,9 +212,8 @@ const Heading = defineStyleConfig({
   },
 });
 
-const { definePartsStyle: defineInputStyle, defineMultiStyleConfig: defineInputConfig } = createMultiStyleConfigHelpers(
-  inputAnatomy.keys
-);
+const { definePartsStyle: defineInputStyle, defineMultiStyleConfig: defineInputConfig } =
+  createMultiStyleConfigHelpers(inputAnatomy.keys);
 
 const hiContrastInput = defineInputStyle({
   field: {
@@ -225,27 +237,30 @@ const baseInputStyle = defineInputStyle({
 
 const Input = defineInputConfig({
   baseStyle: baseInputStyle,
-  variants: { "hi-contrast": hiContrastInput, "default": baseInputStyle },
+  variants: { "hi-contrast": hiContrastInput, default: baseInputStyle },
   defaultProps: { variant: "default" },
 });
 
-const { defineMultiStyleConfig: defineNumberInputConfig } = createMultiStyleConfigHelpers(numberInputAnatomy.keys);
+const { defineMultiStyleConfig: defineNumberInputConfig } = createMultiStyleConfigHelpers(
+  numberInputAnatomy.keys,
+);
 
 const NumberInput = defineNumberInputConfig({
   defaultProps: { variant: "default" },
   variants: { default: baseInput },
 });
 
-const { defineMultiStyleConfig: defineSelectConfig } = createMultiStyleConfigHelpers(selectAnatomy.keys);
+const { defineMultiStyleConfig: defineSelectConfig } = createMultiStyleConfigHelpers(
+  selectAnatomy.keys,
+);
 
 const Select = defineSelectConfig({
   defaultProps: { variant: "default" },
-  variants: { "default": baseInput, "hi-contrast": hiContrastInput },
+  variants: { default: baseInput, "hi-contrast": hiContrastInput },
 });
 
-const { definePartsStyle: defineTabsStyle, defineMultiStyleConfig: defineTabsConfig } = createMultiStyleConfigHelpers(
-  tabsAnatomy.keys
-);
+const { definePartsStyle: defineTabsStyle, defineMultiStyleConfig: defineTabsConfig } =
+  createMultiStyleConfigHelpers(tabsAnatomy.keys);
 
 const baseTabsStyle = defineTabsStyle({
   tab: {

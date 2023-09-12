@@ -7,6 +7,7 @@ import {
   useDisclosure,
   Image,
   VStack,
+  BoxProps,
 } from "@chakra-ui/react";
 import { MdMenu, MdClose } from "react-icons/md";
 import { AuthState } from "utils/interfaces";
@@ -22,7 +23,7 @@ interface BaseLinkProps {
   as?: React.ElementType;
 }
 
-export interface NavbarProps extends BaseLinkProps {
+export interface NavbarProps extends BaseLinkProps, BoxProps {
   user?: AuthState | null;
   logo?: string | null;
   children?: React.ReactElement;
@@ -56,11 +57,11 @@ const NavLinks = ({ links, as }: BaseLinkProps) => (
   </>
 );
 
-const Navbar = ({ links, as, children, logo = diamondLogo as string }: NavbarProps) => {
+const Navbar = ({ links, as, children, logo = diamondLogo as string, ...props }: NavbarProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box position='sticky' top='0' zIndex={1} w='100%'>
+    <Box position='sticky' top='0' zIndex={1} w='100%' {...props}>
       <Flex
         bg='diamond.800'
         px={{ base: 4, md: "7.5vw" }}

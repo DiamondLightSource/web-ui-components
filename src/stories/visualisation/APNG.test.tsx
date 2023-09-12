@@ -32,9 +32,9 @@ describe("APNG", () => {
           ctx.set("Content-Type", "image/png"),
           ctx.body("notAValidAPNGImage"),
           ctx.delay(0),
-          ctx.set("Content-Length", "18")
-        )
-      )
+          ctx.set("Content-Length", "18"),
+        ),
+      ),
     );
     render(<APNGViewer src='image' />);
     await screen.findByText(/no image data available/i);
