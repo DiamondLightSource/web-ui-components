@@ -110,7 +110,7 @@ const CardBody = defineStyleConfig({
 });
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(
-  cardAnatomy.keys
+  cardAnatomy.keys,
 );
 
 const baseCardStyle = definePartsStyle({
@@ -242,7 +242,7 @@ const Input = defineInputConfig({
 });
 
 const { defineMultiStyleConfig: defineNumberInputConfig } = createMultiStyleConfigHelpers(
-  numberInputAnatomy.keys
+  numberInputAnatomy.keys,
 );
 
 const NumberInput = defineNumberInputConfig({
@@ -251,7 +251,7 @@ const NumberInput = defineNumberInputConfig({
 });
 
 const { defineMultiStyleConfig: defineSelectConfig } = createMultiStyleConfigHelpers(
-  selectAnatomy.keys
+  selectAnatomy.keys,
 );
 
 const Select = defineSelectConfig({

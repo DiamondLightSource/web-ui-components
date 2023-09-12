@@ -45,7 +45,9 @@ export const ImageCard = ({
   const zoom = (event: MouseEvent<HTMLImageElement, globalThis.MouseEvent>) => {
     const { x, y, height, width } = event.currentTarget.getBoundingClientRect();
     setZoomCords(
-      `translate(${(-(event.clientX - x) / width) * 50}%, ${(-(event.clientY - y) / height) * 50}%)`
+      `translate(${(-(event.clientX - x) / width) * 50}%, ${
+        (-(event.clientY - y) / height) * 50
+      }%)`,
     );
     onZoomToggle();
   };

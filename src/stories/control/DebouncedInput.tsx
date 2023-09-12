@@ -11,9 +11,9 @@ export const DebouncedInput = ({ onChangeEnd, ...props }: DebounceProps) => {
   const handleUpdate = useMemo(
     () =>
       debounce((event: FormEvent<HTMLInputElement>) =>
-        onChangeEnd((event.target as HTMLInputElement).value)
+        onChangeEnd((event.target as HTMLInputElement).value),
       ),
-    [onChangeEnd]
+    [onChangeEnd],
   );
 
   return (

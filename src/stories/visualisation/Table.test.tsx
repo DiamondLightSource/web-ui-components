@@ -16,7 +16,7 @@ describe("GenericListing", () => {
           { key: "key2", label: "label2" },
           { key: "key3", label: "label3" },
         ]}
-      />
+      />,
     );
 
     expect(screen.getByText("label1")).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe("GenericListing", () => {
           { key: "key2", label: "label2" },
           { key: "key3", label: "label3" },
         ]}
-      />
+      />,
     );
 
     expect(screen.getByText("value1")).toBeInTheDocument();
@@ -55,7 +55,7 @@ describe("GenericListing", () => {
           { key: "key3", label: "label3" },
         ]}
         onClick={callbackMock}
-      />
+      />,
     );
 
     fireEvent.click(screen.getByRole("cell", { name: /value4/i }));

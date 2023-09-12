@@ -69,7 +69,7 @@ export const BoxPlot = withTooltip<BoxPlotProps, BoxPlotStats>(
           range: [yMax, 0],
           nice: true,
         }),
-      [yMax, config]
+      [yMax, config],
     );
 
     const xScale = useMemo(
@@ -80,14 +80,14 @@ export const BoxPlot = withTooltip<BoxPlotProps, BoxPlotStats>(
           domain: data.map(label),
           padding: 0.4,
         }),
-      [data, xMax]
+      [data, xMax],
     );
 
     const checkBoundaries = useCallback(
       (d: BoxPlotStats) => {
         return config.y.domain.min < min(d) && config.y.domain.max > max(d);
       },
-      [config]
+      [config],
     );
 
     const boxWidth = xScale.bandwidth();
@@ -144,7 +144,7 @@ export const BoxPlot = withTooltip<BoxPlotProps, BoxPlotStats>(
                       }}
                     />
                   </g>
-                )
+                ),
             )}
           </Group>
         </svg>
@@ -174,5 +174,5 @@ export const BoxPlot = withTooltip<BoxPlotProps, BoxPlotStats>(
         )}
       </div>
     );
-  }
+  },
 );

@@ -12,7 +12,7 @@ describe("Box Plot", () => {
             { y: 290, label: "again" },
           ],
         ]}
-      />
+      />,
     );
     expect(screen.getByTestId("0-bar")).toBeInTheDocument();
     expect(screen.getByText("bar")).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe("Box Plot", () => {
             { y: 290, label: "again" },
           ],
         ]}
-      />
+      />,
     );
     expect(screen.getByTestId("0-bar")).toBeInTheDocument();
     expect(screen.getAllByText("bar").length).toBe(2);
@@ -49,7 +49,7 @@ describe("Box Plot", () => {
             { y: 290, label: "again" },
           ],
         ]}
-      />
+      />,
     );
     fireEvent.mouseOver(screen.getByTestId("0-bar"));
 
@@ -66,7 +66,7 @@ describe("Box Plot", () => {
             { y: 290, label: "again" },
           ],
         ]}
-      />
+      />,
     );
     const bar = screen.getByTestId("0-bar");
     fireEvent.mouseOver(bar);
@@ -89,7 +89,7 @@ describe("Box Plot", () => {
           ],
         ]}
         options={{ y: { domain: { min: 0, max: 50 } } }}
-      />
+      />,
     );
     expect(screen.getByTestId("0-test")).toHaveAttribute("height", "50");
   });

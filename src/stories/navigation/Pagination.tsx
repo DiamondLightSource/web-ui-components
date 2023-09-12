@@ -44,7 +44,7 @@ const Pagination = ({
   const [itemsPerPage, setItemsPerPage] = useState(
     possibleItemsPerPage.includes(limit)
       ? limit
-      : possibleItemsPerPage[Math.floor(possibleItemsPerPage.length / 2)]
+      : possibleItemsPerPage[Math.floor(possibleItemsPerPage.length / 2)],
   );
   const [pageAmount, setPageAmount] = useState(1);
 

@@ -14,7 +14,14 @@ export interface TableProps extends Omit<BoxProps, "onClick"> {
   rowVariant?: string;
 }
 
-const TableView = ({ data, headers, onClick, label = "data", rowVariant="diamondStriped", ...props }: TableProps) => {
+const TableView = ({
+  data,
+  headers,
+  onClick,
+  label = "data",
+  rowVariant = "diamondStriped",
+  ...props
+}: TableProps) => {
   const handleClick = useCallback(
     (row: React.MouseEvent<HTMLTableRowElement>) => {
       if (onClick && data) {
@@ -25,7 +32,7 @@ const TableView = ({ data, headers, onClick, label = "data", rowVariant="diamond
         }
       }
     },
-    [data, onClick]
+    [data, onClick],
   );
 
   return (

@@ -29,7 +29,7 @@ describe("User", () => {
   it("should fire logout callback when button is clicked", () => {
     const logoutCallback = jest.fn();
     render(
-      <User onLogin={() => {}} onLogout={logoutCallback} user={{ name: "Name", fedid: "FedID" }} />
+      <User onLogin={() => {}} onLogout={logoutCallback} user={{ name: "Name", fedid: "FedID" }} />,
     );
     const logoutButton = screen.getByText("Logout");
 
