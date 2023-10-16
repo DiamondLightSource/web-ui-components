@@ -24,7 +24,11 @@
     "@visx/tooltip": "^3.3.0",
     "@visx/voronoi": "^3.3.0",
     "apng-js": "^1.1.1",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "framer-motion": "^10.16.4",
+    "@chakra-ui/react": "^2.8.1"
   },
   "eslintConfig": {
     "extends": [
