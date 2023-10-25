@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react";
+import { ThemeConfig, extendTheme } from "@chakra-ui/react";
 import { colours } from "styles/colours";
 import {
   Accordion,
@@ -16,8 +16,13 @@ import {
   Select,
 } from "./components";
 
+const config: ThemeConfig = {
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+}
+
 export const theme = extendTheme({
-  colors: colours,
+  semanticTokens: { colors: colours },
   components: {
     Accordion,
     Checkbox,
