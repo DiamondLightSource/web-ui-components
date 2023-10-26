@@ -45,4 +45,5 @@ export const theme = extendTheme({
     xl: "80em",
     "2xl": "150em",
   },
+  config
 });
