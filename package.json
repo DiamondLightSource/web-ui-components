@@ -13,6 +13,7 @@
     "format": "prettier --jsx-single-quote --print-width 100 --write src/**/*.{ts,tsx,css}"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
     "@visx/axis": "^3.3.0",
     "@visx/event": "^3.3.0",
     "@visx/grid": "^3.3.0",
