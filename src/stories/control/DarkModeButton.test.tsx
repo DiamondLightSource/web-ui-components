@@ -13,13 +13,6 @@ describe("Dark Mode Button", () => {
     render(<ColorModeProvider><DarkModeButton /></ColorModeProvider>)
     fireEvent.click(screen.getByRole("button"))
     await screen.findByLabelText('Dark Mode')
-    screen.debug()
   });
 
-  it("check if toggleColorMode called when button clicked", () => {
-    const mockToggle = jest.fn()
-    render(<DarkModeButton onClick={mockToggle} />)
-    fireEvent.click(screen.getByRole('button'))
-    expect(mockToggle).toHaveBeenCalled;
-  });
 });
