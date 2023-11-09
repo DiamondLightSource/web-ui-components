@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0] - 2023-11-08
+
+### Changed
+
+- Added DarkModeButton component
+- Added dark theme variants to Diamond colours
+
 ## [1.0.2] - 2023-09-12
 
 ### Changed
