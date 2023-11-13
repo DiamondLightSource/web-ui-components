@@ -14,6 +14,7 @@ const DarkModeButton = ({ ...props }: DarkModeButtonProps) => {
             aria-label={label}
             icon={icon}
             onClick={toggleColorMode}
+            variant='unstyled'
             {...props}
         />
     )
