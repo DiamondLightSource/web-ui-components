@@ -55,7 +55,7 @@ export default [
     ],
   },
   {
-    input: "dist/dts/index.d.ts",
+    input: "dist/dts/src/index.d.ts",
     output: {
       file: packageJson.types,
       format: "es",
