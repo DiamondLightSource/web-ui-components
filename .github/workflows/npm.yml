@@ -15,7 +15,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@diamondlightsource'
       - run: yarn
-      - run: yarn build
+      - run: yarn build && echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > .npmrc
       - run: yarn npm whoami
       - run: yarn npm publish --access public
         env:
