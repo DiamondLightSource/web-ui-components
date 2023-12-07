@@ -1,7 +1,9 @@
 name: Publish Package to npmjs
 on:
-  release:
-    types: [published]
+  push:
+    branches: [ "master" ]
+#release:
+#  types: [published]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,6 +16,8 @@ jobs:
           scope: '@diamondlightsource'
       - run: yarn
       - run: yarn build
+      - run: yarn npm whoami
       - run: yarn npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
