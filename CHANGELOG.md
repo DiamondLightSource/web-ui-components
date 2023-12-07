@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.1] - 2023-11-09
+
+### Changed
+
+- Fix missing exports
+
 ## [1.1.0] - 2023-11-08
 
 ### Changed
