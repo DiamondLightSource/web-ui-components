@@ -4,6 +4,7 @@
 
 ### Changed
 
+- Added Breadcrumbs component
 - Added DarkModeButton component
 - Added dark theme variants to Diamond colours
 
