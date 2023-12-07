@@ -6,6 +6,9 @@ on:
 #  types: [published]
 jobs:
   build:
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,9 +18,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@diamondlightsource'
       - run: yarn
-      - run: yarn build && echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > .npmrc
+      - run: yarn build
       - run: yarn npm whoami
       - run: yarn npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
