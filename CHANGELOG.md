@@ -1,12 +1,18 @@
 # Changelog
 
-## [1.1.1] - 2023-11-09
+## [1.1.2] - 2023-12-07
+
+### Fixed
+
+- Fix typo in Diamond colors
+
+## [1.1.1] - 2023-12-07
 
 ### Changed
 
 - Fix missing exports
 
-## [1.1.0] - 2023-11-08
+## [1.1.0] - 2023-12-06
 
 ### Changed
 

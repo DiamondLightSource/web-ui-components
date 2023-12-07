@@ -1,7 +1,7 @@
 const colours = {
   diamond: {
     50: { default: "#FBFBFB", _dark: "#525151" },
-    75: { derfault: "#F7F7F7", _dark: "#080808" },
+    75: { default: "#F7F7F7", _dark: "#080808" },
     100: { default: "#E7ECEF", _dark: "#383838" },
     200: { default: "#CBD5E0", _dark: "#030303" },
     300: { default: "#39435E", _dark: "#5f709e" },
