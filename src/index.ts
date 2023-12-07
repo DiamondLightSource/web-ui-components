@@ -15,6 +15,7 @@ export * from "./stories/plots/Bar";
 export * from "./stories/control/User";
 export * from "./stories/control/DebouncedInput";
 export * from "./stories/control/DarkModeButton";
+export * from "./stories/control/TwoLineLink";
 
 export * from "./styles/theme";
 export * from "./styles/colours";
