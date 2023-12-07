@@ -17,9 +17,9 @@ import {
 } from "./components";
 
 const config: ThemeConfig = {
-  initialColorMode: 'light',
+  initialColorMode: "light",
   useSystemColorMode: false,
-}
+};
 
 export const theme = extendTheme({
   semanticTokens: { colors: colours },
@@ -45,5 +45,5 @@ export const theme = extendTheme({
     xl: "80em",
     "2xl": "150em",
   },
-  config
+  config,
 });
