@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.2] - 2023-11-09
+
+### Fixed
+
+- Fix typo in Diamond colors
+
 ## [1.1.1] - 2023-11-09
 
 ### Changed
