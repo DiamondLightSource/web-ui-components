@@ -1,10 +1,14 @@
 # Changelog
 
-## [1.1.2] - 2023-12-07
+## [1.2.0] - 2023-12-08
 
 ### Fixed
 
 - Fix typo in Diamond colors
+
+### Added
+
+- TwoLineLink component, for links with descriptions
 
 ## [1.1.1] - 2023-12-07
 
