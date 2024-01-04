@@ -8,7 +8,6 @@ import {
   Image,
   BoxProps,
   LinkProps,
-  Stack,
   Drawer,
 } from "@chakra-ui/react";
 import { MdMenu, MdClose } from "react-icons/md";
@@ -62,15 +61,9 @@ const NavLinks = ({ children }: NavLinksProps) => {
         _hover={{ color: "diamond.500" }}
         onClick={isOpen ? onClose : onOpen}
       />
-      <Stack
-        h='100%'
-        as='nav'
-        spacing={4}
-        display={{ base: "none", md: "flex" }}
-        direction={{ base: "column", md: "row" }}
-      >
+      <HStack h='100%' as='nav' spacing={4} display={{ base: "none", md: "flex" }}>
         {children}
-      </Stack>
+      </HStack>
       <Drawer isOpen={isOpen} onClose={onClose} placement='top'>
         {children}
       </Drawer>
