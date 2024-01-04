@@ -8,6 +8,7 @@ import {
   MenuList,
   MenuItem,
   Text,
+  Spacer,
 } from "@chakra-ui/react";
 import { MdLogin } from "react-icons/md";
 import { AuthState } from "utils/interfaces";
@@ -21,6 +22,7 @@ export interface UserProps {
 export const User = ({ user, onLogin, onLogout }: UserProps) => {
   return (
     <>
+      <Spacer />
       {user ? (
         <Menu>
           <MenuButton

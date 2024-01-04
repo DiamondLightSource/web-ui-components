@@ -6,60 +6,82 @@ import {
   IconButton,
   useDisclosure,
   Image,
-  VStack,
   BoxProps,
+  LinkProps,
+  Stack,
+  Drawer,
 } from "@chakra-ui/react";
 import { MdMenu, MdClose } from "react-icons/md";
-import { AuthState } from "utils/interfaces";
 import diamondLogo from "../../public/diamondgs.png";
+import React from "react";
 
-export interface LinkDescriptor {
-  label: string;
-  route: string;
+export interface NavLinksProps {
+  children: React.ReactElement<LinkProps> | React.ReactElement<LinkProps>[];
 }
 
-interface BaseLinkProps {
-  links?: LinkDescriptor[];
-  as?: React.ElementType;
-}
-
-export interface NavbarProps extends BaseLinkProps, BoxProps {
-  user?: AuthState | null;
+export interface NavbarProps extends BoxProps {
+  /** Location/content of the logo */
   logo?: string | null;
   children?: React.ReactElement;
 }
 
-const NavLinks = ({ links, as }: BaseLinkProps) => (
-  <>
-    {links
-      ? links.map((link) => (
-          <Link
-            height='100%'
-            alignItems='center'
-            display='flex'
-            px={2}
-            textDecor='none'
-            as={as}
-            borderTop='4px solid transparent'
-            borderBottom='4px solid transparent'
-            color='diamond.50'
-            _hover={{
-              color: "diamond.500",
-              borderBottom: "solid 4px",
-            }}
-            to={link.route}
-            key={link.label}
-          >
-            {link.label}
-          </Link>
-        ))
-      : null}
-  </>
+const NavLink = ({ children, ...props }: LinkProps) => (
+  <Link
+    h='100%'
+    bg={{ base: "diamond.700", md: "none" }}
+    alignItems='center'
+    display='flex'
+    px={2}
+    textDecor='none'
+    borderTop='4px solid transparent'
+    borderBottom='4px solid transparent'
+    color='diamond.50'
+    _hover={{
+      color: "diamond.500",
+      borderBottom: "solid 4px",
+    }}
+    {...props}
+  >
+    {children}
+  </Link>
 );
 
-const Navbar = ({ links, as, children, logo = diamondLogo as string, ...props }: NavbarProps) => {
+const NavLinks = ({ children }: NavLinksProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  return (
+    <>
+      <IconButton
+        order='-1'
+        size={"sm"}
+        icon={isOpen ? <MdClose /> : <MdMenu />}
+        aria-label={"Open Menu"}
+        display={{ md: "none" }}
+        bg='none'
+        border='none'
+        _hover={{ color: "diamond.500" }}
+        onClick={isOpen ? onClose : onOpen}
+      />
+      <Stack
+        h='100%'
+        as='nav'
+        spacing={4}
+        display={{ base: "none", md: "flex" }}
+        direction={{ base: "column", md: "row" }}
+      >
+        {children}
+      </Stack>
+      <Drawer isOpen={isOpen} onClose={onClose} placement='top'>
+        {children}
+      </Drawer>
+    </>
+  );
+};
+
+/**
+ * Basic navigation bar. Can be used with `NavLinks` and `NavLink` to display a responsive list of links.
+ */
+const Navbar = ({ children, logo = diamondLogo as string, ...props }: NavbarProps) => {
   return (
     <Box position='sticky' top='0' zIndex={1} w='100%' {...props}>
       <Flex
@@ -69,49 +91,19 @@ const Navbar = ({ links, as, children, logo = diamondLogo as string, ...props }:
         alignItems={"center"}
         justifyContent={"space-between"}
       >
-        <IconButton
-          size={"sm"}
-          icon={isOpen ? <MdClose /> : <MdMenu />}
-          aria-label={"Open Menu"}
-          display={{ md: "none" }}
-          bg='transparent'
-          border='none'
-          _hover={{ background: "transparent", color: "diamond.500" }}
-          onClick={isOpen ? onClose : onOpen}
-        />
-        <HStack h='100%' spacing={8} alignItems={"center"}>
+        <HStack h='100%' spacing={8} alignItems={"center"} w='100%'>
           {logo ? (
-            <Link as={as} to='/'>
+            <Link href='/'>
               <Box maxW='5rem'>
-                <Image
-                  alt='Home'
-                  _hover={{ filter: "brightness(70%)" }}
-                  fit='cover'
-                  paddingBottom={{ md: "6px", base: 0 }}
-                  src={logo}
-                />
+                <Image alt='Home' _hover={{ filter: "brightness(70%)" }} fit='cover' src={logo} />
               </Box>
             </Link>
           ) : null}
-          <HStack h='100%' as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
-            <NavLinks links={links} as={as} />
-          </HStack>
+          {children}
         </HStack>
-        <Flex alignItems={"center"}>{children}</Flex>
       </Flex>
-      {isOpen && (
-        <VStack
-          bg='diamond.700'
-          borderBottom='1px solid'
-          borderColor='diamond.500'
-          as={"nav"}
-          spacing={4}
-        >
-          <NavLinks links={links} as={as} />
-        </VStack>
-      )}
     </Box>
   );
 };
 
-export { Navbar };
+export { Navbar, NavLinks, NavLink };
