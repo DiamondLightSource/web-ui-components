@@ -2,7 +2,7 @@ import { Tag } from "@chakra-ui/react";
 import { Meta, StoryObj } from "@storybook/react";
 import { User } from "stories/control/User";
 
-import { Navbar } from "stories/navigation/Navbar";
+import { NavLink, NavLinks, Navbar } from "stories/navigation/Navbar";
 
 const meta = {
   title: "Components/Navigation/Navbar",
@@ -19,20 +19,12 @@ export const Empty: Story = {
 
 export const WithLogin: Story = {
   args: {
-    user: {
-      name: "User",
-      fedid: "fedid",
-    },
     children: <User onLogin={() => {}} onLogout={() => {}} user={null} />,
   },
 };
 
 export const WithUser: Story = {
   args: {
-    user: {
-      name: "User",
-      fedid: "fedid",
-    },
     children: (
       <User onLogin={() => {}} onLogout={() => {}} user={{ name: "Name", fedid: "FedID" }} />
     ),
@@ -41,41 +33,29 @@ export const WithUser: Story = {
 
 export const Links: Story = {
   args: {
-    user: {
-      name: "User",
-      fedid: "fedid",
-    },
-    links: [
-      { route: "/", label: "Proposals" },
-      { route: "/", label: "Visits" },
-    ],
+    children: (
+      <NavLinks>
+        <NavLink href='#'>Proposal</NavLink>
+        <NavLink href='#'>Visits</NavLink>
+      </NavLinks>
+    ),
   },
 };
 
 export const NoLogo: Story = {
   args: {
-    user: {
-      name: "User",
-      fedid: "fedid",
-    },
-    links: [
-      { route: "/", label: "Proposals" },
-      { route: "/", label: "Visits" },
-    ],
+    children: (
+      <NavLinks>
+        <NavLink href='#'>Proposal</NavLink>
+        <NavLink href='#'>Visits</NavLink>
+      </NavLinks>
+    ),
     logo: null,
   },
 };
 
 export const CustomChildElement: Story = {
   args: {
-    user: {
-      name: "User",
-      fedid: "fedid",
-    },
-    links: [
-      { route: "/", label: "Proposals" },
-      { route: "/", label: "Visits" },
-    ],
     children: <Tag>Hello, World!</Tag>,
   },
 };

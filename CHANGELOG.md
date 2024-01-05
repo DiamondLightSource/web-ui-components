@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.3.0] - 2024-01-04
+
+### Changed
+
+- Links in the navbar now must be declared as their own component (`NavLink` inside `NavLinks`)
+
+### Added
+
+- Colour palette documentation
+
 ## [1.2.0] - 2023-12-08
 
 ### Fixed
