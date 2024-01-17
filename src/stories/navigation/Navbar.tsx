@@ -21,7 +21,7 @@ export interface NavLinksProps {
 export interface NavbarProps extends BoxProps {
   /** Location/content of the logo */
   logo?: string | null;
-  children?: React.ReactElement;
+  children?: React.ReactElement | React.ReactElement[];
 }
 
 const NavLink = ({ children, ...props }: LinkProps) => (

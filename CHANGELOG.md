@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1] - 2024-01-17
+
+### Changed
+
+- Cursor does not become pointer if there is no `onClick` event set for table
+- Navbar takes multiple direct children
+
 ## [1.3.0] - 2024-01-04
 
 ### Changed

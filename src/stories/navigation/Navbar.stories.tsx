@@ -42,6 +42,18 @@ export const Links: Story = {
   },
 };
 
+export const LinksAndUser: Story = {
+  args: {
+    children: [
+      <NavLinks>
+        <NavLink href='#'>Proposal</NavLink>
+        <NavLink href='#'>Visits</NavLink>
+      </NavLinks>,
+      <User onLogin={() => {}} onLogout={() => {}} user={{ name: "Name", fedid: "FedID" }} />,
+    ],
+  },
+};
+
 export const NoLogo: Story = {
   args: {
     children: (

@@ -50,7 +50,7 @@ const TableView = ({
               ))}
             </Tr>
           </Thead>
-          <Tbody cursor='pointer'>
+          <Tbody cursor={onClick ? "pointer" : "initial"}>
             {data.map((item, i) => (
               <Tr h='2vh' key={i} onClick={handleClick}>
                 {headers.map((header) => (

@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom'
 import "@testing-library/jest-dom";
 import { server } from "../../src/mocks/server";
-import "whatwg-fetch";
 
 beforeEach(() => server.listen());
 afterEach(() => {
