@@ -19,7 +19,9 @@ const config: StorybookConfig = {
     config.resolve!.modules = [...(config.resolve!.modules || []), path.resolve(__dirname, "../src")];
     return config;
   },
-  staticDirs:["../src/public"]
-
+  staticDirs:["../src/public"],
+  core: {
+    disableTelemetry: true,
+  },
 };
 export default config;
