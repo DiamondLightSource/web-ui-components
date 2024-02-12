@@ -104,7 +104,7 @@ describe("Pagination", () => {
     const input = screen.getByLabelText("Next Page");
     fireEvent.click(input);
 
-    expect(mockCallback).toBeCalledWith(2);
+    expect(mockCallback).toHaveBeenCalledWith(2);
   });
 
   it("should call items per page changes", () => {
@@ -113,7 +113,7 @@ describe("Pagination", () => {
 
     fireEvent.change(screen.getByRole("combobox"), { target: { value: 5 } });
 
-    expect(mockCallback).toBeCalledWith(5);
+    expect(mockCallback).toHaveBeenCalledWith(5);
   });
 
   it("should limit item count to prop-passed value", () => {
@@ -135,10 +135,18 @@ describe("Pagination", () => {
     const input = screen.getByLabelText("Next Page");
     fireEvent.click(input);
 
-    expect(mockCallback).toBeCalledWith(2);
+    expect(mockCallback).toHaveBeenCalledWith(2);
 
     rerender(<Pagination total={20} onPageChange={mockCallback} />);
 
-    expect(mockCallback).toBeCalledWith(1);
+    expect(mockCallback).toHaveBeenCalledWith(1);
+  });
+
+  it("should not call page callback if externally controlled page changes", () => {
+    const mockCallback = jest.fn();
+    const { rerender } = render(<Pagination total={100} page={1} onPageChange={mockCallback} />);
+    rerender(<Pagination total={100} page={2} onPageChange={mockCallback} />);
+
+    expect(mockCallback).not.toHaveBeenCalled();
   });
 });

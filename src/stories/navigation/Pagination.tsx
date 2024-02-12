@@ -1,15 +1,5 @@
-import {
-  Box,
-  HStack,
-  Select,
-  Button,
-  Text,
-  Spacer,
-  Divider,
-  Stack,
-  BoxProps,
-} from "@chakra-ui/react";
-import { ChangeEvent, useEffect, useState } from "react";
+import { Box, HStack, Select, Button, Text, Spacer, Divider, Stack, BoxProps } from "@chakra-ui/react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 type PageChangeCallback = (page: number) => void;
 type ItemChangeCallback = (items: number) => void;
@@ -42,9 +32,7 @@ const Pagination = ({
   // Use limit set in instance, unless it does not exist in the list of possible items per page.
   // Default to middle.
   const [itemsPerPage, setItemsPerPage] = useState(
-    possibleItemsPerPage.includes(limit)
-      ? limit
-      : possibleItemsPerPage[Math.floor(possibleItemsPerPage.length / 2)],
+    possibleItemsPerPage.includes(limit) ? limit : possibleItemsPerPage[Math.floor(possibleItemsPerPage.length / 2)]
   );
   const [pageAmount, setPageAmount] = useState(1);
 
@@ -54,30 +42,42 @@ const Pagination = ({
     }
   }, [page]);
 
-  useEffect(() => {
-    if (onPageChange !== undefined) {
-      onPageChange(internalPage);
-    }
-  }, [internalPage, onPageChange]);
-
-  useEffect(() => {
-    if (onItemCountChange !== undefined) {
-      onItemCountChange(itemsPerPage);
-    }
-  }, [itemsPerPage, onItemCountChange]);
-
   const updateItemsPerPage = (event: ChangeEvent<HTMLSelectElement>) => {
     const newItemsPerPage = parseInt(event.target.value);
     const newPage = Math.ceil((internalPage * itemsPerPage) / newItemsPerPage);
-    setInternalPage(newPage > pageAmount ? 1 : newPage);
+    updatePage(newPage > pageAmount ? 1 : newPage);
     setItemsPerPage(newItemsPerPage);
+
+    if (onItemCountChange !== undefined) {
+      onItemCountChange(newItemsPerPage);
+    }
   };
+
+  const updatePage = useCallback(
+    (newPage: number) => {
+      setInternalPage(newPage);
+
+      if (onPageChange !== undefined) {
+        onPageChange(newPage);
+      }
+    },
+    [onPageChange, setInternalPage]
+  );
 
   useEffect(() => {
     const newPageAmount = Math.ceil(total / itemsPerPage);
-    setInternalPage((prevPage) => (prevPage > newPageAmount ? 1 : prevPage));
+    setInternalPage((prevPage) => {
+      if (prevPage > newPageAmount) {
+        if (onPageChange !== undefined) {
+          onPageChange(1);
+        }
+        return 1;
+      } else {
+        return prevPage;
+      }
+    });
     setPageAmount(newPageAmount);
-  }, [total, itemsPerPage, setInternalPage]);
+  }, [total, itemsPerPage, setInternalPage, onPageChange]);
 
   return (
     <Box py={2} {...props}>
@@ -87,7 +87,7 @@ const Pagination = ({
             aria-label='First Page'
             size='sm'
             variant='pgNotSelected'
-            onClick={() => setInternalPage(1)}
+            onClick={() => updatePage(1)}
             isDisabled={internalPage <= 1}
           >
             &lt;&lt;
@@ -97,7 +97,7 @@ const Pagination = ({
             size='sm'
             variant='pgNotSelected'
             isDisabled={internalPage <= 1}
-            onClick={() => setInternalPage(internalPage - 1)}
+            onClick={() => updatePage(internalPage - 1)}
           >
             &lt;
           </Button>
@@ -116,7 +116,7 @@ const Pagination = ({
                   key={pageDisplay}
                   mx={0.5}
                   variant={pageDisplay === internalPage ? "pgSelected" : "pgNotSelected"}
-                  onClick={() => setInternalPage(pageDisplay)}
+                  onClick={() => updatePage(pageDisplay)}
                 >
                   {pageDisplay}
                 </Button>
@@ -128,7 +128,7 @@ const Pagination = ({
             size='sm'
             variant='pgNotSelected'
             isDisabled={internalPage >= pageAmount}
-            onClick={() => setInternalPage(internalPage + 1)}
+            onClick={() => updatePage(internalPage + 1)}
           >
             &gt;
           </Button>
@@ -137,7 +137,7 @@ const Pagination = ({
             size='sm'
             variant='pgNotSelected'
             isDisabled={internalPage >= pageAmount}
-            onClick={() => setInternalPage(pageAmount)}
+            onClick={() => updatePage(pageAmount)}
           >
             &gt;&gt;
           </Button>
