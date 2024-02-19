@@ -17,6 +17,5 @@ jobs:
           scope: '@diamondlightsource'
       - run: yarn
       - run: yarn build
-      - run: yarn npm whoami
       - run: yarn npm publish --access public
         
