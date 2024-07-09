@@ -11,25 +11,14 @@ export interface ApngProps {
   caption?: string;
   /* Image source URL */
   src: string;
-  /* Play APNG file directly, ignore external controls */
-  autoplay?: boolean;
 }
 
-export const APNGViewer = ({
-  src,
-  onFrameCountChanged,
-  frameIndex = 0,
-  caption,
-  autoplay = false,
-}: ApngProps) => {
+export const APNGViewer = ({ src, onFrameCountChanged, frameIndex = 0, caption }: ApngProps) => {
   const [apng, setApng] = useState<APNG | null>();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const abortController = new AbortController();
-    if (autoplay) {
-      return;
-    }
 
     fetch(src, { signal: abortController.signal })
       .then(async (response) => {
@@ -54,7 +43,7 @@ export const APNGViewer = ({
       // Cancel loading the APNG when page changes before it is fully loaded
       abortController.abort();
     };
-  }, [src, onFrameCountChanged, autoplay]);
+  }, [src, onFrameCountChanged]);
 
   useEffect(() => {
     if (apng && frameIndex < apng.frames.length && frameIndex >= 0) {
@@ -76,7 +65,7 @@ export const APNGViewer = ({
 
   return (
     <VStack h='100%' w='100%' spacing='0' bg='diamond.100'>
-      {!autoplay ? (
+      {apng ? (
         <canvas
           aria-label='Frame Image'
           width={apng ? apng.height : 0}

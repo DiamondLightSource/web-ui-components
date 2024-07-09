@@ -43,10 +43,4 @@ describe("APNG", () => {
     render(<APNGViewer caption='Caption Text' src='http://localhost/image' />);
     await screen.findByText(/caption text/i);
   });
-
-  it("should shortcircuit to being a basic image wrapper if autoplay is set", async () => {
-    server.use(http.get("http://localhost/image", () => HttpResponse.text(null, { status: 404 })));
-    render(<APNGViewer caption='Caption Text' src='http://localhost/image' autoplay={true} />);
-    await screen.findByLabelText(/frame image/i);
-  });
 });
