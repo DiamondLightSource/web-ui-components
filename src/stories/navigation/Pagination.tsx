@@ -1,4 +1,14 @@
-import { Box, HStack, Select, Button, Text, Spacer, Divider, Stack, BoxProps } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  Select,
+  Button,
+  Text,
+  Spacer,
+  Divider,
+  Stack,
+  BoxProps,
+} from "@chakra-ui/react";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 type PageChangeCallback = (page: number) => void;
@@ -32,7 +42,9 @@ const Pagination = ({
   // Use limit set in instance, unless it does not exist in the list of possible items per page.
   // Default to middle.
   const [itemsPerPage, setItemsPerPage] = useState(
-    possibleItemsPerPage.includes(limit) ? limit : possibleItemsPerPage[Math.floor(possibleItemsPerPage.length / 2)]
+    possibleItemsPerPage.includes(limit)
+      ? limit
+      : possibleItemsPerPage[Math.floor(possibleItemsPerPage.length / 2)],
   );
   const [pageAmount, setPageAmount] = useState(1);
 
@@ -61,7 +73,7 @@ const Pagination = ({
         onPageChange(newPage);
       }
     },
-    [onPageChange, setInternalPage]
+    [onPageChange, setInternalPage],
   );
 
   useEffect(() => {

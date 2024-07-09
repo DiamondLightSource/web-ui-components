@@ -1,6 +1,6 @@
-import { Image, Skeleton, Heading, VStack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import parseAPNG, { Frame } from "apng-js";
+import { Skeleton, Heading, VStack } from "@chakra-ui/react";
+import { useEffect, useRef, useState } from "react";
+import parseAPNG, { APNG } from "apng-js";
 
 export interface ApngProps {
   /* Current selected frame */
@@ -22,8 +22,8 @@ export const APNGViewer = ({
   caption,
   autoplay = false,
 }: ApngProps) => {
-  const [frames, setFrames] = useState<Frame[] | null>();
-  const [currentFrame, setCurrentFrame] = useState<string>();
+  const [apng, setApng] = useState<APNG | null>();
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -31,19 +31,18 @@ export const APNGViewer = ({
       return;
     }
 
-    setCurrentFrame(undefined);
     fetch(src, { signal: abortController.signal })
       .then(async (response) => {
         if (response.status !== 200) {
-          setFrames(null);
+          setApng(null);
           return;
         }
 
         const apng = parseAPNG(await response.arrayBuffer());
         if (apng instanceof Error) {
-          setFrames(null);
+          setApng(null);
         } else {
-          setFrames(apng.frames);
+          setApng(apng);
           if (apng.frames.length && onFrameCountChanged) {
             onFrameCountChanged(apng.frames.length);
           }
@@ -58,26 +57,33 @@ export const APNGViewer = ({
   }, [src, onFrameCountChanged, autoplay]);
 
   useEffect(() => {
-    if (frames && frameIndex < frames.length && frameIndex >= 0) {
-      const frame = frames[frameIndex];
-      if (frame.imageData !== null) {
-        setCurrentFrame(URL.createObjectURL(frame.imageData));
+    if (apng && frameIndex < apng.frames.length && frameIndex >= 0) {
+      const frame = apng.frames[frameIndex];
+      if (frame.imageData !== null && canvasRef.current) {
+        const context = canvasRef.current.getContext("2d");
+        if (context) {
+          if (frame.disposeOp === 1) {
+            // Do not overlay frames
+            context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+          }
+          createImageBitmap(frame.imageData).then((imageBitmap) => {
+            context.drawImage(imageBitmap, frame.left, frame.top);
+          });
+        }
       }
     }
-  }, [frames, frameIndex]);
+  }, [apng, frameIndex]);
 
   return (
     <VStack h='100%' w='100%' spacing='0' bg='diamond.100'>
-      {currentFrame || autoplay ? (
-        <Image
-          alt={caption || "APNG Image"}
+      {!autoplay ? (
+        <canvas
           aria-label='Frame Image'
-          objectFit='contain'
-          maxW='100%'
-          h='100%'
-          src={autoplay ? src : currentFrame}
+          width={apng ? apng.height : 0}
+          height={apng ? apng.width : 0}
+          ref={canvasRef}
         />
-      ) : frames === null ? (
+      ) : apng === null ? (
         <Heading alignItems='center' display='flex' h='100%' variant='notFound'>
           No Image Data Available
         </Heading>
