@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.0.0] - 2024-07-09
+
+### Changed
+
+- APNG files are now rendered in a canvas, rather than the native `img` DOM element
+
+### Removed
+
+- BREAKING: `autoplay` prop from `APNGViewer`. Users are advised to use the namtive `img` DOM element if they don't require playback control.
+
 ## [1.3.2] - 2024-02-09
 
 ### Changed
