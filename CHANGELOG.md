@@ -8,7 +8,7 @@
 
 ### Removed
 
-- BREAKING: `autoplay` prop from `APNGViewer`. Users are advised to use the namtive `img` DOM element if they don't require playback control.
+- BREAKING: `autoplay` prop from `APNGViewer`. Users are advised to use the native `img` DOM element if they don't require playback control.
 
 ## [1.3.1] - 2024-02-19
 
