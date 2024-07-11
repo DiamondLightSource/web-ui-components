@@ -7,6 +7,7 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@chakra-ui/storybook-addon",
+    "@storybook/addon-webpack5-compiler-babel"
   ],
   framework: {
     name: "@storybook/react-webpack5",

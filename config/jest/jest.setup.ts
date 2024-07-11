@@ -11,3 +11,5 @@ afterAll(() => {
 });
 
 global.structuredClone = (val: Record<string, any>) => JSON.parse(JSON.stringify(val));
+
+HTMLCanvasElement.prototype.getContext = jest.fn();
