@@ -14,7 +14,6 @@ type Story = StoryObj<typeof meta>;
 export const Basic: Story = {
   args: {
     src: "/apng.png",
-    autoplay: true,
   },
 };
 
