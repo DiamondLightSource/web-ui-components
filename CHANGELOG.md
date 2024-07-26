@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.1.0] - 2024-07-26
+
+### Added
+
+- `Flipper` component now takes same props as `Input` for its input section
+
 ## [2.0.0] - 2024-07-09
 
 ### Changed
