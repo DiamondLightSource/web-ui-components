@@ -1,8 +1,16 @@
-import { Button, HStack, InputRightAddon, InputGroup, Input, Skeleton } from "@chakra-ui/react";
+import {
+  Button,
+  HStack,
+  InputRightAddon,
+  InputGroup,
+  Input,
+  Skeleton,
+  InputProps,
+} from "@chakra-ui/react";
 import { useEffect, useState, FocusEvent as ReactFocusEvent, useCallback, useMemo } from "react";
 import { debounce } from "utils/generic";
 
-export interface FlipperProps {
+export interface FlipperProps extends Omit<InputProps, "onChange" | "size"> {
   /** Total number of pages */
   total: number;
   /** Component size */
@@ -30,6 +38,7 @@ export const Flipper = ({
   defaultPage,
   startFrom = "end",
   disabled = false,
+  ...props
 }: FlipperProps) => {
   const [value, setValue] = useState<string | undefined>();
 
@@ -120,7 +129,7 @@ export const Flipper = ({
   }
 
   return (
-    <HStack py={size === "xs" ? 1 : 0} maxW={size === "xs" ? "230px" : "295px"}>
+    <HStack py={size === "xs" ? 1 : 0}>
       <Button aria-label='First Page' isDisabled={disabled} size={size} onClick={() => setPage(1)}>
         &lt;&lt;
       </Button>
@@ -134,6 +143,7 @@ export const Flipper = ({
       </Button>
       <InputGroup size={size}>
         <Input
+          {...props}
           isDisabled={disabled}
           bg='white'
           aria-label='Current Page'
