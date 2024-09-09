@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.1.1] - 2024-09-09
+
+### Added
+
+- Flips `APNGViewer` width and height
+
 ## [2.1.0] - 2024-07-26
 
 ### Added
