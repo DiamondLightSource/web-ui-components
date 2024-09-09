@@ -68,8 +68,8 @@ export const APNGViewer = ({ src, onFrameCountChanged, frameIndex = 0, caption }
       {apng ? (
         <canvas
           aria-label='Frame Image'
-          width={apng ? apng.height : 0}
-          height={apng ? apng.width : 0}
+          width={apng ? apng.width : 0}
+          height={apng ? apng.height : 0}
           ref={canvasRef}
         />
       ) : apng === null ? (
