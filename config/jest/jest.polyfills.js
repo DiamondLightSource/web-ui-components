@@ -25,6 +25,6 @@ Object.defineProperties(globalThis, {
   File: { value: File },
   Headers: { value: Headers },
   FormData: { value: FormData },
-  Request: { value: Request },
-  Response: { value: Response },
+  Request: { value: Request, writable: true },
+  Response: { value: Response, writable: true },
 });
