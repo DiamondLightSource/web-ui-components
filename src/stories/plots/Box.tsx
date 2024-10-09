@@ -68,19 +68,13 @@ export const BoxPlot = withTooltip<BoxPlotProps, BoxPlotStats>(
     }, [height]);
 
     const yScale = useMemo(() => {
-      if (config.y.log) {
-        return scaleLog<number>({
-          domain: [config.y.domain.min, config.y.domain.max],
-          range: [yMax, 0],
-          nice: true,
-        });
-      }
-
-      return scaleLinear<number>({
+      const yOptions = {
         domain: [config.y.domain.min, config.y.domain.max],
         range: [yMax, 0],
         nice: true,
-      });
+      };
+
+      return config.y.log ? scaleLog<number>(yOptions) : scaleLinear<number>(yOptions);
     }, [yMax, config]);
 
     const xScale = useMemo(

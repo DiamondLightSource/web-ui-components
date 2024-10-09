@@ -35,10 +35,10 @@ export const Basic: Story = {
     height: 500,
 
     options: {
-      "y": {
-        "label": "Thickest → Thinnest"
-      }
-    }
+      y: {
+        label: "Thickest → Thinnest",
+      },
+    },
   },
 };
 
