@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback, useRef } from "react";
 import { Group } from "@visx/group";
 import { Circle } from "@visx/shape";
-import { scaleLinear } from "@visx/scale";
+import { scaleLinear, scaleLog } from "@visx/scale";
 import { withTooltip, Tooltip } from "@visx/tooltip";
 import { WithTooltipProvidedProps } from "@visx/tooltip/lib/enhancers/withTooltip";
 import { voronoi } from "@visx/voronoi";
@@ -9,7 +9,7 @@ import { GridColumns, GridRows } from "@visx/grid";
 import { AxisBottom, AxisLeft } from "@visx/axis";
 import { localPoint } from "@visx/event";
 import { BasePoint, CompleteScatterPlotOptions, ScatterPlotOptions } from "utils/interfaces";
-import { mergeDeep } from "utils/generic";
+import { detectZeroCross, mergeDeep } from "utils/generic";
 import { defaultMargin } from "utils/config/plot";
 
 const x = (d: BasePoint) => d.x;
@@ -26,8 +26,8 @@ export type ScatterProps = {
 };
 
 const defaultPlotOptions: ScatterPlotOptions = {
-  x: { domain: { min: undefined, max: undefined }, label: "" },
-  y: { domain: { min: undefined, max: undefined }, label: "" },
+  x: { domain: { min: undefined, max: undefined }, log: false, label: "" },
+  y: { domain: { min: undefined, max: undefined }, log: false, label: "" },
   points: { dotRadius: 2 },
 };
 
@@ -65,6 +65,9 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
         min: newConfig.y.domain.min ?? Math.min(...yValues),
         max: newConfig.y.domain.max ?? Math.max(...yValues),
       };
+
+      detectZeroCross(newConfig.y);
+      detectZeroCross(newConfig.x);
 
       return newConfig as CompleteScatterPlotOptions;
     }, [data, options]);
@@ -117,24 +120,24 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
     const xMax = useMemo(() => width - defaultMargin.left - defaultMargin.right, [width]);
     const yMax = useMemo(() => height - defaultMargin.top - defaultMargin.bottom, [height]);
 
-    const xScale = useMemo(
-      () =>
-        scaleLinear<number>({
-          domain: [config.x.domain.min, config.x.domain.max],
-          range: [0, xMax],
-        }),
-      [xMax, config],
-    );
+    const xScale = useMemo(() => {
+      const xOptions = {
+        domain: [config.x.domain.min, config.x.domain.max],
+        range: [0, xMax],
+      };
 
-    const yScale = useMemo(
-      () =>
-        scaleLinear<number>({
-          domain: [config.y.domain.min, config.y.domain.max],
-          range: [yMax, 0],
-          nice: true,
-        }),
-      [yMax, config],
-    );
+      return config.x.log ? scaleLog<number>(xOptions) : scaleLinear<number>(xOptions);
+    }, [xMax, config]);
+
+    const yScale = useMemo(() => {
+      const yOptions = {
+        domain: [config.y.domain.min, config.y.domain.max],
+        range: [yMax, 0],
+        nice: true,
+      };
+
+      return config.y.log ? scaleLog<number>(yOptions) : scaleLinear<number>(yOptions);
+    }, [yMax, config]);
 
     const voronoiLayout = useMemo(
       () =>

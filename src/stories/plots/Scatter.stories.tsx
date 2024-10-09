@@ -60,3 +60,29 @@ export const DotRadius: Story = {
     height: 500,
   },
 };
+
+export const WithLogYAxis: Story = {
+  args: {
+    data: [
+      { x: 1, y: 1 },
+      { x: 2, y: 2 },
+      { x: 3, y: 3 },
+    ],
+    options: { y: { log: true, domain: { min: 1, max: 100 } } },
+    width: 500,
+    height: 500,
+  },
+};
+
+export const WithLogXAxis: Story = {
+  args: {
+    data: [
+      { x: 1, y: 1 },
+      { x: 2, y: 2 },
+      { x: 3, y: 3 },
+    ],
+    options: { x: { log: true, domain: { min: 1, max: 100 } } },
+    width: 500,
+    height: 500,
+  },
+};
