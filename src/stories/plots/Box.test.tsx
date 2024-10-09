@@ -115,4 +115,17 @@ describe("Box Plot", () => {
 
     expect(screen.queryByTestId("box-item")).not.toBeInTheDocument();
   });
+
+  it("should render Y axis logarithmically if log passed", () => {
+    render(
+      <BoxPlot
+        data={[]}
+        options={{ y: { domain: { min: 1, max: 1000 }, log: true } }}
+        width={100}
+        height={100}
+      />,
+    );
+
+    expect(screen.getByText("100")).toBeInTheDocument();
+  });
 });

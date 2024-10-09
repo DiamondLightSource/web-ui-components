@@ -33,6 +33,12 @@ export const Basic: Story = {
     data: generateRandomData(),
     width: 500,
     height: 500,
+
+    options: {
+      "y": {
+        "label": "Thickest → Thinnest"
+      }
+    }
   },
 };
 
@@ -40,6 +46,15 @@ export const WithDomain: Story = {
   args: {
     data: generateRandomData(),
     options: { y: { domain: { min: 0, max: 120 } } },
+    width: 500,
+    height: 500,
+  },
+};
+
+export const LogAxis: Story = {
+  args: {
+    data: generateRandomData(),
+    options: { y: { domain: { min: 1, max: 300 }, log: true } },
     width: 500,
     height: 500,
   },

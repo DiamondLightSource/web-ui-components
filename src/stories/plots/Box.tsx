@@ -1,12 +1,12 @@
 import { useCallback, useMemo } from "react";
 import { Group } from "@visx/group";
-import { scaleBand, scaleLinear } from "@visx/scale";
+import { scaleBand, scaleLinear, scaleLog } from "@visx/scale";
 import { withTooltip, Tooltip } from "@visx/tooltip";
 import { WithTooltipProvidedProps } from "@visx/tooltip/lib/enhancers/withTooltip";
 import { GridRows } from "@visx/grid";
 import { AxisBottom, AxisLeft } from "@visx/axis";
-import { BoxPlotOptions, BoxPlotStats, CompleteScatterPlotOptions } from "utils/interfaces";
-import { mergeDeep } from "utils/generic";
+import { BoxPlotOptions, BoxPlotStats, CompleteBoxOptions } from "utils/interfaces";
+import { detectZeroCross, mergeDeep } from "utils/generic";
 import { BoxPlot as BoxPlotInner } from "@visx/stats";
 import { getFillColour } from "styles/colours";
 import { defaultMargin } from "utils/config/plot";
@@ -26,7 +26,7 @@ export type BoxPlotProps = {
 };
 
 const defaultPlotOptions: BoxPlotOptions = {
-  y: { domain: { min: undefined, max: undefined }, label: "" },
+  y: { domain: { min: undefined, max: undefined }, label: "", log: false },
   x: { label: "" },
 };
 
@@ -43,15 +43,20 @@ export const BoxPlot = withTooltip<BoxPlotProps, BoxPlotStats>(
     options,
     data,
   }: BoxPlotProps & WithTooltipProvidedProps<BoxPlotStats>) => {
-    const config: CompleteScatterPlotOptions = useMemo(() => {
-      const newConfig = mergeDeep(defaultPlotOptions, options ?? {});
+    const config: CompleteBoxOptions = useMemo(() => {
+      const newConfig: CompleteBoxOptions = mergeDeep(
+        defaultPlotOptions,
+        options ?? {},
+      ) as CompleteBoxOptions;
 
       newConfig.y.domain = {
         min: newConfig.y.domain.min ?? Math.min(...data.map(min)) - 1,
         max: newConfig.y.domain.max ?? Math.max(...data.map(max)) + 1,
       };
 
-      return newConfig as CompleteScatterPlotOptions;
+      detectZeroCross(newConfig.y);
+
+      return newConfig;
     }, [data, options]);
 
     const xMax = useMemo(() => {
@@ -62,15 +67,21 @@ export const BoxPlot = withTooltip<BoxPlotProps, BoxPlotStats>(
       return height - defaultMargin.top - defaultMargin.bottom;
     }, [height]);
 
-    const yScale = useMemo(
-      () =>
-        scaleLinear<number>({
+    const yScale = useMemo(() => {
+      if (config.y.log) {
+        return scaleLog<number>({
           domain: [config.y.domain.min, config.y.domain.max],
           range: [yMax, 0],
           nice: true,
-        }),
-      [yMax, config],
-    );
+        });
+      }
+
+      return scaleLinear<number>({
+        domain: [config.y.domain.min, config.y.domain.max],
+        range: [yMax, 0],
+        nice: true,
+      });
+    }, [yMax, config]);
 
     const xScale = useMemo(
       () =>
