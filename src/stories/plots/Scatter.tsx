@@ -9,7 +9,7 @@ import { GridColumns, GridRows } from "@visx/grid";
 import { AxisBottom, AxisLeft } from "@visx/axis";
 import { localPoint } from "@visx/event";
 import { BasePoint, CompleteScatterPlotOptions, ScatterPlotOptions } from "utils/interfaces";
-import { detectZeroCross, mergeDeep } from "utils/generic";
+import { detectZeroCross, mergeDeep, roundTo } from "utils/generic";
 import { defaultMargin } from "utils/config/plot";
 
 const x = (d: BasePoint) => d.x;
@@ -26,8 +26,8 @@ export type ScatterProps = {
 };
 
 const defaultPlotOptions: ScatterPlotOptions = {
-  x: { domain: { min: undefined, max: undefined }, log: false, label: "" },
-  y: { domain: { min: undefined, max: undefined }, log: false, label: "" },
+  x: { domain: { min: undefined, max: undefined }, log: false, base: 10, precision: 2, label: "" },
+  y: { domain: { min: undefined, max: undefined }, log: false, base: 10, precision: 2, label: "" },
   points: { dotRadius: 2 },
 };
 
@@ -126,7 +126,9 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
         range: [0, xMax],
       };
 
-      return config.x.log ? scaleLog<number>(xOptions) : scaleLinear<number>(xOptions);
+      return config.x.log
+        ? scaleLog<number>({ ...xOptions, base: config.x.base })
+        : scaleLinear<number>(xOptions);
     }, [xMax, config]);
 
     const yScale = useMemo(() => {
@@ -136,7 +138,9 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
         nice: true,
       };
 
-      return config.y.log ? scaleLog<number>(yOptions) : scaleLinear<number>(yOptions);
+      return config.y.log
+        ? scaleLog<number>({ ...yOptions, base: config.y.base })
+        : scaleLinear<number>(yOptions);
     }, [yMax, config]);
 
     const voronoiLayout = useMemo(
@@ -228,8 +232,19 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
               height={yMax}
               stroke='#e0e0e0'
             />
-            <AxisBottom label={config.x.label} top={yMax} scale={xScale} numTicks={5} />
-            <AxisLeft label={config.y.label} scale={yScale} numTicks={5} />
+            <AxisBottom
+              label={config.x.label}
+              top={yMax}
+              scale={xScale}
+              numTicks={5}
+              tickFormat={(v) => roundTo(v as number, config.x.precision)}
+            />
+            <AxisLeft
+              label={config.y.label}
+              scale={yScale}
+              numTicks={5}
+              tickFormat={(v) => roundTo(v as number, config.y.precision)}
+            />
             {decimatedData.map((point, i) => (
               <Circle
                 data-testid='dot'

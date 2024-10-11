@@ -68,6 +68,10 @@ export interface PlotAxisOptions {
   label: string;
   /** Scale axis logarithmically */
   log: boolean;
+  /** How many fraction digits to display */
+  precision: number;
+  /** Log base */
+  base: number;
 }
 
 export interface CompleteScatterPlotOptions {

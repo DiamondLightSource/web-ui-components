@@ -38,3 +38,12 @@ export const detectZeroCross = (axis: CompleteScatterPlotOptions["y"]) => {
     throw new Error("Domain in axis must not cross 0 if using log scale, for log(0) = inf");
   }
 };
+
+/**
+ * Round number to N digits of fractional precision
+ * @param value Original value
+ * @param digits Maximum digits of fraction precision to use
+ * @returns Rounded number
+ */
+export const roundTo = (value: number, digits: number) =>
+  value.toLocaleString("en-GB", { maximumFractionDigits: digits });

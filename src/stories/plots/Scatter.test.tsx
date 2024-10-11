@@ -217,4 +217,22 @@ describe("Scatter Plot", () => {
 
     expect(screen.getByText("100")).toBeInTheDocument();
   });
+
+  it.each([{ axis: "x" }, { axis: "y" }])(
+    "should render $axis with n digits precision if precision passed",
+    ({ axis }) => {
+      render(
+        <ScatterPlot
+          data={[]}
+          width={500}
+          height={500}
+          options={{
+            [axis]: { log: true, domain: { min: 1, max: 50 }, base: Math.E, precision: 1 },
+          }}
+        />,
+      );
+
+      expect(screen.getAllByText("20.1").length).toBeGreaterThanOrEqual(1);
+    },
+  );
 });

@@ -59,3 +59,12 @@ export const LogAxis: Story = {
     height: 500,
   },
 };
+
+export const NaturalLog: Story = {
+  args: {
+    data: generateRandomData(),
+    options: { y: { domain: { min: 1, max: 300 }, log: true, base: Math.E, precision: 1 } },
+    width: 500,
+    height: 500,
+  },
+};

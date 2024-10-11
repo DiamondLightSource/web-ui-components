@@ -86,3 +86,16 @@ export const WithLogXAxis: Story = {
     height: 500,
   },
 };
+
+export const NaturalLog: Story = {
+  args: {
+    data: [
+      { x: 1, y: 1 },
+      { x: 2, y: 2 },
+      { x: 3, y: 3 },
+    ],
+    options: { y: { log: true, domain: { min: 1, max: 100 }, base: Math.E } },
+    width: 500,
+    height: 500,
+  },
+};

@@ -6,7 +6,7 @@ import { WithTooltipProvidedProps } from "@visx/tooltip/lib/enhancers/withToolti
 import { GridRows } from "@visx/grid";
 import { AxisBottom, AxisLeft } from "@visx/axis";
 import { BoxPlotOptions, BoxPlotStats, CompleteBoxOptions } from "utils/interfaces";
-import { detectZeroCross, mergeDeep } from "utils/generic";
+import { detectZeroCross, mergeDeep, roundTo } from "utils/generic";
 import { BoxPlot as BoxPlotInner } from "@visx/stats";
 import { getFillColour } from "styles/colours";
 import { defaultMargin } from "utils/config/plot";
@@ -26,7 +26,7 @@ export type BoxPlotProps = {
 };
 
 const defaultPlotOptions: BoxPlotOptions = {
-  y: { domain: { min: undefined, max: undefined }, label: "", log: false },
+  y: { domain: { min: undefined, max: undefined }, label: "", log: false, base: 10, precision: 2 },
   x: { label: "" },
 };
 
@@ -74,7 +74,9 @@ export const BoxPlot = withTooltip<BoxPlotProps, BoxPlotStats>(
         nice: true,
       };
 
-      return config.y.log ? scaleLog<number>(yOptions) : scaleLinear<number>(yOptions);
+      return config.y.log
+        ? scaleLog<number>({ ...yOptions, base: config.y.base })
+        : scaleLinear<number>(yOptions);
     }, [yMax, config]);
 
     const xScale = useMemo(
@@ -112,7 +114,12 @@ export const BoxPlot = withTooltip<BoxPlotProps, BoxPlotStats>(
           />
           <Group left={defaultMargin.left} top={defaultMargin.top}>
             <GridRows scale={yScale} width={xMax} height={yMax} stroke='#e0e0e0' />
-            <AxisLeft label={config.y.label} scale={yScale} numTicks={5} />
+            <AxisLeft
+              label={config.y.label}
+              scale={yScale}
+              numTicks={5}
+              tickFormat={(v) => roundTo(v as number, config.y.precision)}
+            />
             <AxisBottom top={yMax} scale={xScale} tickValues={data.map(label)} />
             {data.map(
               (d: BoxPlotStats, i) =>
