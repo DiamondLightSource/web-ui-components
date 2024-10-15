@@ -99,8 +99,8 @@ describe("Box Plot", () => {
       />,
     );
 
-    expect(screen.getByText("0.0")).toBeInTheDocument();
-    expect(screen.getAllByText("5.0").length).toBe(2);
+    expect(screen.getByText("0")).toBeInTheDocument();
+    expect(screen.getAllByText("5").length).toBe(2);
   });
 
   it("should not render outside domain boundaries", () => {
@@ -114,5 +114,31 @@ describe("Box Plot", () => {
     );
 
     expect(screen.queryByTestId("box-item")).not.toBeInTheDocument();
+  });
+
+  it("should render Y axis logarithmically if log passed", () => {
+    render(
+      <BoxPlot
+        data={[]}
+        options={{ y: { domain: { min: 1, max: 1000 }, log: true } }}
+        width={100}
+        height={100}
+      />,
+    );
+
+    expect(screen.getByText("100")).toBeInTheDocument();
+  });
+
+  it("should limit Y axis to n digits of precision if precision passed", () => {
+    render(
+      <BoxPlot
+        data={[]}
+        options={{ y: { domain: { min: 1, max: 50 }, log: true, base: Math.E, precision: 1 } }}
+        width={100}
+        height={100}
+      />,
+    );
+
+    expect(screen.getByText("20.1")).toBeInTheDocument();
   });
 });

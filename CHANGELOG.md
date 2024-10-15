@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.2.0] - 2024-10-09
+
+### Added
+
+- Add log scale options for `BoxPlot` and `ScatterPlot`
+
 ## [2.1.1] - 2024-09-09
 
 ### Added

@@ -115,7 +115,7 @@ describe("Scatter Plot", () => {
     const graph = screen.getByLabelText("Graph");
     fireEvent.click(graph, { clientX: 65, clientY: 35 });
 
-    expect(callback).toBeCalledWith(522, 999);
+    expect(callback).toHaveBeenCalledWith(522, 999);
   });
 
   it("should decimate (nearly) overlapping points", () => {
@@ -204,4 +204,35 @@ describe("Scatter Plot", () => {
 
     expect(screen.getAllByTestId("dot").length).toBe(2);
   });
+
+  it.each([{ axis: "x" }, { axis: "y" }])("should render $axis logarithmically", ({ axis }) => {
+    render(
+      <ScatterPlot
+        data={[]}
+        width={500}
+        height={500}
+        options={{ [axis]: { log: true, domain: { min: 1, max: 1000 } } }}
+      />,
+    );
+
+    expect(screen.getByText("100")).toBeInTheDocument();
+  });
+
+  it.each([{ axis: "x" }, { axis: "y" }])(
+    "should render $axis with n digits precision if precision passed",
+    ({ axis }) => {
+      render(
+        <ScatterPlot
+          data={[]}
+          width={500}
+          height={500}
+          options={{
+            [axis]: { log: true, domain: { min: 1, max: 50 }, base: Math.E, precision: 1 },
+          }}
+        />,
+      );
+
+      expect(screen.getAllByText("20.1").length).toBeGreaterThanOrEqual(1);
+    },
+  );
 });

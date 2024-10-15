@@ -61,11 +61,17 @@ export interface BarStats {
   label: string;
 }
 
-interface PlotAxisOptions {
+export interface PlotAxisOptions {
   /** Domain (lower and upper bounds) of the axis */
   domain: { min?: number; max?: number };
   /** Label for the axis */
   label: string;
+  /** Scale axis logarithmically */
+  log: boolean;
+  /** How many fraction digits to display */
+  precision: number;
+  /** Log base */
+  base: number;
 }
 
 export interface CompleteScatterPlotOptions {
@@ -80,7 +86,7 @@ export interface CompleteScatterPlotOptions {
 export interface ScatterPlotOptions extends DeepPartial<CompleteScatterPlotOptions> {}
 
 export interface CompleteBoxOptions {
-  y: PlotAxisOptions;
+  y: DeepRequired<PlotAxisOptions>;
   x: { label: string };
 }
 
