@@ -3082,7 +3082,7 @@ __metadata:
     "@chakra-ui/react": ^2.3.6
     "@emotion/react": ^11.10.4
     "@emotion/styled": ^11.10.4
-    framer-motion: ^10.2.3
+    framer-motion: ^11.11.4
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
