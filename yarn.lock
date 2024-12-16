@@ -3007,7 +3007,7 @@ __metadata:
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
     jest-resolve: "npm:^29.7.0"
-    msw: "npm:^2.4.9"
+    msw: "npm:^2.6.9"
     prettier: "npm:^3.4.2"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
@@ -3025,9 +3025,9 @@ __metadata:
     webpack: "npm:^5.97.1"
   peerDependencies:
     "@chakra-ui/react": ^2.3.6
-    "@emotion/react": ^11.14.0
-    "@emotion/styled": ^11.14.0
-    framer-motion: ^11.14.4
+    "@emotion/react": ^11.10.4
+    "@emotion/styled": ^11.10.4
+    framer-motion: ^10.2.3
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -11638,7 +11638,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:^2.4.9":
+"msw@npm:^2.6.9":
   version: 2.6.9
   resolution: "msw@npm:2.6.9"
   dependencies:
