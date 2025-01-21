@@ -2,13 +2,12 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
-import terser from "@rollup/plugin-terser";
 import postcss from "rollup-plugin-postcss";
-import packageJson from "./package.json" assert { type: "json" };
+import packageJson from "./package.json" with { type: "json" };
 import dts from "rollup-plugin-dts";
 import image from "@rollup/plugin-image";
 
-export default [
+const config = [
   {
     input: "src/index.ts",
     output: {
@@ -22,7 +21,6 @@ export default [
       image(),
       resolve(),
       commonjs(),
-      terser(),
       typescript({
         exclude: ["**/*.stories.*", "**/*.test.*"],
       }),
@@ -36,7 +34,8 @@ export default [
     output: {
       format: "esm",
       sourcemap: true,
-      file: packageJson.module
+      file: packageJson.module,
+      banner: "'use client';",
     },
     plugins: [
       peerDepsExternal({
@@ -45,7 +44,6 @@ export default [
       image(),
       resolve(),
       commonjs(),
-      terser(),
       typescript({
         exclude: ["**/*.stories.*", "**/*.test.*"],
       }),
@@ -72,3 +70,5 @@ export default [
     ],
   },
 ];
+
+export default config;

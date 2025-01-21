@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.2.1] - 2025-01-21
+
+### Changed
+
+- Enable "use client"; directive
+
 ## [2.2.0] - 2024-10-09
 
 ### Added
