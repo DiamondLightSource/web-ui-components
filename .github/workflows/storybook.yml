@@ -13,21 +13,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Source
-      uses: actions/checkout@v3.5.1
+      uses: actions/checkout@v4
 
     - name: Setup Node.js Environment
-      uses: actions/setup-node@v3.7.0
+      uses: actions/setup-node@v4
       with:
         cache: yarn
 
-    - name: Install Yarn Dependencies 
+    - name: Install Yarn Dependencies
       run: yarn install
 
     - name: Build Storybook
       run: yarn build-storybook
 
     - name: Upload Pages Artifact
-      uses: actions/upload-pages-artifact@v2.0.0
+      uses: actions/upload-pages-artifact@v4
       with:
         path: storybook-static
 
@@ -44,4 +44,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2.0.3
+        uses: actions/deploy-pages@v4
