@@ -2,7 +2,6 @@ import { useCallback, useMemo } from "react";
 import { Group } from "@visx/group";
 import { scaleBand, scaleLinear, scaleLog } from "@visx/scale";
 import { withTooltip, Tooltip } from "@visx/tooltip";
-import { WithTooltipProvidedProps } from "@visx/tooltip/lib/enhancers/withTooltip";
 import { GridRows } from "@visx/grid";
 import { AxisBottom, AxisLeft } from "@visx/axis";
 import { BoxPlotOptions, BoxPlotStats, CompleteBoxOptions } from "utils/interfaces";
@@ -30,7 +29,7 @@ const defaultPlotOptions: BoxPlotOptions = {
   x: { label: "" },
 };
 
-export const BoxPlot = withTooltip<BoxPlotProps, BoxPlotStats>(
+export const BoxPlot: React.FunctionComponent<BoxPlotProps> = withTooltip<BoxPlotProps, BoxPlotStats>(
   ({
     width = 100,
     height = 100,
@@ -42,7 +41,7 @@ export const BoxPlot = withTooltip<BoxPlotProps, BoxPlotStats>(
     tooltipTop,
     options,
     data,
-  }: BoxPlotProps & WithTooltipProvidedProps<BoxPlotStats>) => {
+  }) => {
     const config: CompleteBoxOptions = useMemo(() => {
       const newConfig: CompleteBoxOptions = mergeDeep(
         defaultPlotOptions,

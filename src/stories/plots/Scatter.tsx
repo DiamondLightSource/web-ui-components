@@ -3,7 +3,6 @@ import { Group } from "@visx/group";
 import { Circle } from "@visx/shape";
 import { scaleLinear, scaleLog } from "@visx/scale";
 import { withTooltip, Tooltip } from "@visx/tooltip";
-import { WithTooltipProvidedProps } from "@visx/tooltip/lib/enhancers/withTooltip";
 import { voronoi } from "@visx/voronoi";
 import { GridColumns, GridRows } from "@visx/grid";
 import { AxisBottom, AxisLeft } from "@visx/axis";
@@ -31,7 +30,7 @@ const defaultPlotOptions: ScatterPlotOptions = {
   points: { dotRadius: 2 },
 };
 
-export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
+export const ScatterPlot: React.FunctionComponent<ScatterProps> = withTooltip<ScatterProps, BasePoint>(
   ({
     width = 100,
     height = 100,
@@ -45,7 +44,7 @@ export const ScatterPlot = withTooltip<ScatterProps, BasePoint>(
     onPointClicked,
     decimationThreshold,
     data,
-  }: ScatterProps & WithTooltipProvidedProps<BasePoint>) => {
+  }) => {
     const svgRef = useRef<SVGSVGElement>(null);
     // Voronoi neighbour radius
     const neighborRadius = 4;

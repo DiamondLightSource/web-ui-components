@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { Group } from "@visx/group";
 import { scaleBand, scaleLinear } from "@visx/scale";
 import { withTooltip, Tooltip } from "@visx/tooltip";
-import { WithTooltipProvidedProps } from "@visx/tooltip/lib/enhancers/withTooltip";
 import { GridRows } from "@visx/grid";
 import { AxisBottom, AxisLeft } from "@visx/axis";
 import { BarStats, BoxPlotOptions, CompleteScatterPlotOptions } from "utils/interfaces";
@@ -28,7 +27,7 @@ const defaultPlotOptions: BoxPlotOptions = {
   x: { label: "" },
 };
 
-export const BarChart = withTooltip<BarProps, BarStats>(
+export const BarChart: React.FunctionComponent<BarProps> = withTooltip<BarProps, BarStats>(
   ({
     width = 100,
     height = 100,
@@ -41,7 +40,7 @@ export const BarChart = withTooltip<BarProps, BarStats>(
     tooltipTop,
     options,
     data,
-  }: BarProps & WithTooltipProvidedProps<BarStats>) => {
+  }) => {
     const config: CompleteScatterPlotOptions = useMemo(() => {
       const newConfig = mergeDeep(defaultPlotOptions, options ?? {});
       const yValues = data.map((bars) => bars.map(y)).flat();
