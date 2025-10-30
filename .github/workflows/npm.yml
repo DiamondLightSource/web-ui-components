@@ -18,5 +18,5 @@ jobs:
           scope: '@diamondlightsource'
       - run: yarn
       - run: yarn build
-      - run: yarn npm publish --access public --provenance
+      - run: yarn npm publish --access public --json
 
