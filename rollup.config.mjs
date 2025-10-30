@@ -48,10 +48,7 @@ const config = [
         compilerOptions: {
         outDir: 'dist',
         }
-      }),
-      postcss({
-        extensions: [".css"],
-      }),
+      })
     ],
   },
   {
