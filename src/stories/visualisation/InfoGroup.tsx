@@ -26,9 +26,9 @@ export const InfoGroup = ({ info, height = "100%", cols = 2 }: InfoProps) => (
               bg='diamond.100'
             >
               <Text variant='infoGroupText' as='b'>{`${box.label}: `}</Text>
-              <Text aria-label={`${box.label} Value`} variant='infoGroupText'>{`${
-                box.value || "?"
-              }`}</Text>
+              <Text aria-label={`${box.label} Value`} variant='infoGroupText'>{
+                box.value ?? "?"
+              }</Text>
             </Box>
           </GridItem>
         ))}

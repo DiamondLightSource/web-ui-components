@@ -2,7 +2,6 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
-import postcss from "rollup-plugin-postcss";
 import packageJson from "./package.json" with { type: "json" };
 import dts from "rollup-plugin-dts";
 import image from "@rollup/plugin-image";
@@ -23,9 +22,9 @@ const config = [
       commonjs(),
       typescript({
         exclude: ["**/*.stories.*", "**/*.test.*"],
-      }),
-      postcss({
-        extensions: [".css"],
+        compilerOptions: {
+        outDir: 'dist',
+        }
       }),
     ],
   },
@@ -46,6 +45,9 @@ const config = [
       commonjs(),
       typescript({
         exclude: ["**/*.stories.*", "**/*.test.*"],
+        compilerOptions: {
+        outDir: 'dist',
+        }
       }),
       postcss({
         extensions: [".css"],

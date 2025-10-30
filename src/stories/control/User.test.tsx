@@ -23,7 +23,7 @@ describe("User", () => {
 
     fireEvent.click(loginButton);
 
-    expect(loginCallback).toBeCalled();
+    expect(loginCallback).toHaveBeenCalled();
   });
 
   it("should fire logout callback when button is clicked", () => {
@@ -35,7 +35,7 @@ describe("User", () => {
 
     fireEvent.click(logoutButton);
 
-    expect(logoutCallback).toBeCalled();
+    expect(logoutCallback).toHaveBeenCalled();
   });
 
   it("should display name and FedID", () => {

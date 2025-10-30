@@ -104,7 +104,7 @@ describe("Flipper", () => {
     const input = screen.getByLabelText("Previous Page");
     fireEvent.click(input);
 
-    expect(mockCallback).toBeCalledWith(111);
+    expect(mockCallback).toHaveBeenCalledWith(111);
   });
 
   it("should call callback when page changes (debounced)", async () => {
@@ -114,7 +114,7 @@ describe("Flipper", () => {
     const input = screen.getByLabelText("Previous Page");
     fireEvent.click(input);
 
-    await waitFor(() => expect(mockCallback).toBeCalledWith(111));
+    await waitFor(() => expect(mockCallback).toHaveBeenCalledWith(111));
   });
 
   it("should not change page if page is controlled externally", () => {
@@ -124,7 +124,7 @@ describe("Flipper", () => {
     const input = screen.getByLabelText("Previous Page");
     fireEvent.click(input);
 
-    expect(mockCallback).toBeCalledWith(111);
+    expect(mockCallback).toHaveBeenCalledWith(111);
     expect(screen.getByLabelText("Current Page")).not.toHaveAttribute("value", "111");
   });
 });
