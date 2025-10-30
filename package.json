@@ -1,5 +1,5 @@
 {
-  "name": "ui-components",
+  "name": "@diamondlightsource/ui-components",
   "repository": {
     "type": "git",
     "url": "https://github.com/DiamondLightSource/web-ui-components.git"

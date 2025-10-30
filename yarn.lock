@@ -3297,6 +3297,96 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@diamondlightsource/ui-components@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@diamondlightsource/ui-components@workspace:."
+  dependencies:
+    "@babel/core": "npm:^7.28.5"
+    "@babel/plugin-proposal-private-property-in-object": "npm:^7.21.11"
+    "@babel/plugin-syntax-import-assertions": "npm:^7.27.1"
+    "@babel/preset-env": "npm:^7.28.5"
+    "@babel/preset-react": "npm:^7.27.1"
+    "@babel/preset-typescript": "npm:^7.27.1"
+    "@chakra-ui/icons": "npm:^2.2.6"
+    "@chakra-ui/react": "npm:^2.10.9"
+    "@chakra-ui/storybook-addon": "npm:5.2.5"
+    "@emotion/react": "npm:^11.14.0"
+    "@emotion/styled": "npm:^11.14.1"
+    "@rollup/plugin-commonjs": "npm:^28.0.9"
+    "@rollup/plugin-image": "npm:^3.0.3"
+    "@rollup/plugin-node-resolve": "npm:^16.0.3"
+    "@rollup/plugin-typescript": "npm:^12.3.0"
+    "@storybook/addon-actions": "npm:^8.6.14"
+    "@storybook/addon-essentials": "npm:^8.6.14"
+    "@storybook/addon-interactions": "npm:^8.6.14"
+    "@storybook/addon-links": "npm:^8.6.14"
+    "@storybook/addon-webpack5-compiler-babel": "npm:^3.0.6"
+    "@storybook/blocks": "npm:^8.6.14"
+    "@storybook/components": "npm:^8.6.14"
+    "@storybook/manager-api": "npm:^8.6.14"
+    "@storybook/node-logger": "npm:^8.6.14"
+    "@storybook/preview-api": "npm:^8.6.14"
+    "@storybook/react": "npm:^8.6.14"
+    "@storybook/react-webpack5": "npm:^8.6.14"
+    "@storybook/testing-library": "npm:^0.2.2"
+    "@storybook/types": "npm:^8.6.14"
+    "@svgr/webpack": "npm:^8.1.0"
+    "@testing-library/dom": "npm:^10.4.1"
+    "@testing-library/jest-dom": "npm:^6.9.1"
+    "@testing-library/react": "npm:^16.3.0"
+    "@testing-library/user-event": "npm:^14.6.1"
+    "@types/jest": "npm:^30.0.0"
+    "@types/node": "npm:^22.18.13"
+    "@types/react-dom": "npm:^18.3.1"
+    "@visx/axis": "npm:^3.12.0"
+    "@visx/event": "npm:^3.12.0"
+    "@visx/grid": "npm:^3.12.0"
+    "@visx/group": "npm:^3.12.0"
+    "@visx/responsive": "npm:^3.12.0"
+    "@visx/scale": "npm:^3.12.0"
+    "@visx/shape": "npm:^3.12.0"
+    "@visx/stats": "npm:^3.12.0"
+    "@visx/tooltip": "npm:^3.12.0"
+    "@visx/voronoi": "npm:^3.12.0"
+    apng-js: "npm:^1.1.5"
+    babel-jest: "npm:^30.2.0"
+    babel-loader: "npm:^9.2.1"
+    babel-plugin-named-asset-import: "npm:^0.3.8"
+    babel-preset-react-app: "npm:^10.1.0"
+    browserslist: "npm:^4.27.0"
+    eslint: "npm:^8.57.1"
+    eslint-config-react-app: "npm:^7.0.1"
+    eslint-webpack-plugin: "npm:^4.2.0"
+    framer-motion: "npm:^11.18.2"
+    jest: "npm:^30.2.0"
+    jest-environment-jsdom: "npm:^30.2.0"
+    jest-resolve: "npm:^30.2.0"
+    msw: "npm:2.4.11"
+    prettier: "npm:^3.6.2"
+    react: "npm:^18.3.1"
+    react-dom: "npm:^18.3.1"
+    react-icons: "npm:^5.5.0"
+    resolve: "npm:^1.22.11"
+    rollup: "npm:^4.52.5"
+    rollup-plugin-dts: "npm:^6.2.3"
+    rollup-plugin-peer-deps-external: "npm:^2.2.4"
+    rollup-plugin-postcss: "npm:^4.0.2"
+    storybook: "npm:^8.6.14"
+    ts-jest: "npm:^29.4.5"
+    ts-node: "npm:^10.9.2"
+    typescript: "npm:^5.9.3"
+    undici: "npm:^5.29.0"
+    webpack: "npm:^5.102.1"
+  peerDependencies:
+    "@chakra-ui/react": ^2.10.9
+    "@emotion/react": ^11.14.0
+    "@emotion/styled": ^11.14.1
+    framer-motion: ^11.11.4
+    react: ^19.2.0 || ^18.0.0
+    react-dom: ^19.2.0 || ^18.0.0
+  languageName: unknown
+  linkType: soft
+
 "@emnapi/core@npm:^1.4.3":
   version: 1.6.0
   resolution: "@emnapi/core@npm:1.6.0"
@@ -15693,96 +15783,6 @@ __metadata:
   checksum: 10c0/83b0a90eca35f778e07cad9622b80c448b6aad457c9ff8e568afed978212b42930a95f9e1be943a1ffa4258a3340fbb899f41461131c05bb1d0a9c303aed8479
   languageName: node
   linkType: hard
-
-"ui-components@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "ui-components@workspace:."
-  dependencies:
-    "@babel/core": "npm:^7.28.5"
-    "@babel/plugin-proposal-private-property-in-object": "npm:^7.21.11"
-    "@babel/plugin-syntax-import-assertions": "npm:^7.27.1"
-    "@babel/preset-env": "npm:^7.28.5"
-    "@babel/preset-react": "npm:^7.27.1"
-    "@babel/preset-typescript": "npm:^7.27.1"
-    "@chakra-ui/icons": "npm:^2.2.6"
-    "@chakra-ui/react": "npm:^2.10.9"
-    "@chakra-ui/storybook-addon": "npm:5.2.5"
-    "@emotion/react": "npm:^11.14.0"
-    "@emotion/styled": "npm:^11.14.1"
-    "@rollup/plugin-commonjs": "npm:^28.0.9"
-    "@rollup/plugin-image": "npm:^3.0.3"
-    "@rollup/plugin-node-resolve": "npm:^16.0.3"
-    "@rollup/plugin-typescript": "npm:^12.3.0"
-    "@storybook/addon-actions": "npm:^8.6.14"
-    "@storybook/addon-essentials": "npm:^8.6.14"
-    "@storybook/addon-interactions": "npm:^8.6.14"
-    "@storybook/addon-links": "npm:^8.6.14"
-    "@storybook/addon-webpack5-compiler-babel": "npm:^3.0.6"
-    "@storybook/blocks": "npm:^8.6.14"
-    "@storybook/components": "npm:^8.6.14"
-    "@storybook/manager-api": "npm:^8.6.14"
-    "@storybook/node-logger": "npm:^8.6.14"
-    "@storybook/preview-api": "npm:^8.6.14"
-    "@storybook/react": "npm:^8.6.14"
-    "@storybook/react-webpack5": "npm:^8.6.14"
-    "@storybook/testing-library": "npm:^0.2.2"
-    "@storybook/types": "npm:^8.6.14"
-    "@svgr/webpack": "npm:^8.1.0"
-    "@testing-library/dom": "npm:^10.4.1"
-    "@testing-library/jest-dom": "npm:^6.9.1"
-    "@testing-library/react": "npm:^16.3.0"
-    "@testing-library/user-event": "npm:^14.6.1"
-    "@types/jest": "npm:^30.0.0"
-    "@types/node": "npm:^22.18.13"
-    "@types/react-dom": "npm:^18.3.1"
-    "@visx/axis": "npm:^3.12.0"
-    "@visx/event": "npm:^3.12.0"
-    "@visx/grid": "npm:^3.12.0"
-    "@visx/group": "npm:^3.12.0"
-    "@visx/responsive": "npm:^3.12.0"
-    "@visx/scale": "npm:^3.12.0"
-    "@visx/shape": "npm:^3.12.0"
-    "@visx/stats": "npm:^3.12.0"
-    "@visx/tooltip": "npm:^3.12.0"
-    "@visx/voronoi": "npm:^3.12.0"
-    apng-js: "npm:^1.1.5"
-    babel-jest: "npm:^30.2.0"
-    babel-loader: "npm:^9.2.1"
-    babel-plugin-named-asset-import: "npm:^0.3.8"
-    babel-preset-react-app: "npm:^10.1.0"
-    browserslist: "npm:^4.27.0"
-    eslint: "npm:^8.57.1"
-    eslint-config-react-app: "npm:^7.0.1"
-    eslint-webpack-plugin: "npm:^4.2.0"
-    framer-motion: "npm:^11.18.2"
-    jest: "npm:^30.2.0"
-    jest-environment-jsdom: "npm:^30.2.0"
-    jest-resolve: "npm:^30.2.0"
-    msw: "npm:2.4.11"
-    prettier: "npm:^3.6.2"
-    react: "npm:^18.3.1"
-    react-dom: "npm:^18.3.1"
-    react-icons: "npm:^5.5.0"
-    resolve: "npm:^1.22.11"
-    rollup: "npm:^4.52.5"
-    rollup-plugin-dts: "npm:^6.2.3"
-    rollup-plugin-peer-deps-external: "npm:^2.2.4"
-    rollup-plugin-postcss: "npm:^4.0.2"
-    storybook: "npm:^8.6.14"
-    ts-jest: "npm:^29.4.5"
-    ts-node: "npm:^10.9.2"
-    typescript: "npm:^5.9.3"
-    undici: "npm:^5.29.0"
-    webpack: "npm:^5.102.1"
-  peerDependencies:
-    "@chakra-ui/react": ^2.10.9
-    "@emotion/react": ^11.14.0
-    "@emotion/styled": ^11.14.1
-    framer-motion: ^11.11.4
-    react: ^19.2.0 || ^18.0.0
-    react-dom: ^19.2.0 || ^18.0.0
-  languageName: unknown
-  linkType: soft
 
 "unbox-primitive@npm:^1.0.2":
   version: 1.0.2
