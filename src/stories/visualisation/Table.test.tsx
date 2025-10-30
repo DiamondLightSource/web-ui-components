@@ -59,6 +59,6 @@ describe("GenericListing", () => {
     );
 
     fireEvent.click(screen.getByRole("cell", { name: /value4/i }));
-    expect(callbackMock).toBeCalledWith({ key1: "value4", key2: "value5", key3: "value6" }, 1);
+    expect(callbackMock).toHaveBeenCalledWith({ key1: "value4", key2: "value5", key3: "value6" }, 1);
   });
 });

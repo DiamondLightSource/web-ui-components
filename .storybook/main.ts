@@ -24,5 +24,10 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
+  refs: {
+    "@chakra-ui/react": {
+      disable: true,
+    }
+  }
 };
 export default config;

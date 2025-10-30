@@ -23,6 +23,9 @@ const config = [
       commonjs(),
       typescript({
         exclude: ["**/*.stories.*", "**/*.test.*"],
+        compilerOptions: {
+        outDir: 'dist',
+        }
       }),
       postcss({
         extensions: [".css"],
@@ -46,6 +49,9 @@ const config = [
       commonjs(),
       typescript({
         exclude: ["**/*.stories.*", "**/*.test.*"],
+        compilerOptions: {
+        outDir: 'dist',
+        }
       }),
       postcss({
         extensions: [".css"],

@@ -34,7 +34,7 @@ describe("Image", () => {
     fireEvent.click(title);
 
     await waitFor(() => {
-      expect(onClick).toBeCalled();
+      expect(onClick).toHaveBeenCalled();
     });
   });
 
