@@ -8,6 +8,7 @@ jobs:
     permissions:
       id-token: write  # Required for OIDC
       contents: write
+    environment: release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,5 +18,5 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: yarn
       - run: yarn build
-      - run: npm publish --access public
+      - run: yarn npm publish --access public
 
