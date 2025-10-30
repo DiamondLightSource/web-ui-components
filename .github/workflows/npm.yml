@@ -2,11 +2,13 @@ name: Publish Package to npmjs
 on:
   release:
     types: [published]
+
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+
 jobs:
   build:
-    env:
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_DLS }}
-      NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_DLS }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
