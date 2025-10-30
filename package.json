@@ -224,5 +224,8 @@
       "@babel/plugin-syntax-import-assertions"
     ]
   },
-  "packageManager": "yarn@4.10.3"
+  "packageManager": "yarn@4.10.3",
+  "publishConfig": {
+    "provenance": true
+  }
 }
