@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.3.0] - 2026-03-23
+
+### Added 
+
+- Allow APNG viewer to fallback to static PNG
+
+### Changed
+
+- Dependency updates
+
 ## [2.2.3] - 2025-09-02
 
 ### Changed

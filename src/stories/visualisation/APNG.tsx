@@ -11,9 +11,11 @@ export interface ApngProps {
   caption?: string;
   /* Image source URL */
   src: string;
+  /* Fall back to displaying static PNGs if image is not APNG */
+  fallbackToPng?: boolean;
 }
 
-export const APNGViewer = ({ src, onFrameCountChanged, frameIndex = 0, caption }: ApngProps) => {
+export const APNGViewer = ({ src, onFrameCountChanged, frameIndex = 0, fallbackToPng = false, caption }: ApngProps) => {
   const [apng, setApng] = useState<APNG | null>();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -73,9 +75,13 @@ export const APNGViewer = ({ src, onFrameCountChanged, frameIndex = 0, caption }
           ref={canvasRef}
         />
       ) : apng === null ? (
-        <Heading alignItems='center' display='flex' h='100%' variant='notFound'>
-          No Image Data Available
-        </Heading>
+        fallbackToPng ? (
+          <img src={src} alt={caption} />
+        ) : (
+          <Heading alignItems='center' display='flex' h='100%' variant='notFound'>
+            No Image Data Available
+          </Heading>
+        )
       ) : (
         <Skeleton h='100%' w='100%' />
       )}
