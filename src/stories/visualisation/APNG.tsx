@@ -1,5 +1,5 @@
 import { Skeleton, Heading, VStack } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { SyntheticEvent, useCallback, useEffect, useRef, useState } from "react";
 import parseAPNG, { APNG } from "apng-js";
 
 export interface ApngProps {
@@ -13,9 +13,10 @@ export interface ApngProps {
   src: string;
   /* Fall back to displaying static PNGs if image is not APNG */
   fallbackToPng?: boolean;
+  onLoad?: ({width, height}: {width: number, height: number}) => void
 }
 
-export const APNGViewer = ({ src, onFrameCountChanged, frameIndex = 0, fallbackToPng = false, caption }: ApngProps) => {
+export const APNGViewer = ({ src, onFrameCountChanged, frameIndex = 0, fallbackToPng = false, caption, onLoad }: ApngProps) => {
   const [apng, setApng] = useState<APNG | null>();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -34,6 +35,10 @@ export const APNGViewer = ({ src, onFrameCountChanged, frameIndex = 0, fallbackT
           setApng(null);
         } else {
           setApng(apng);
+          if (onLoad) {
+            onLoad({width: apng.width, height: apng.height});
+          }
+
           if (apng.frames.length && onFrameCountChanged) {
             onFrameCountChanged(apng.frames.length);
           }
@@ -45,7 +50,7 @@ export const APNGViewer = ({ src, onFrameCountChanged, frameIndex = 0, fallbackT
       // Cancel loading the APNG when page changes before it is fully loaded
       abortController.abort();
     };
-  }, [src, onFrameCountChanged]);
+  }, [src, onFrameCountChanged, onLoad]);
 
   useEffect(() => {
     if (apng && frameIndex < apng.frames.length && frameIndex >= 0) {
@@ -65,6 +70,13 @@ export const APNGViewer = ({ src, onFrameCountChanged, frameIndex = 0, fallbackT
     }
   }, [apng, frameIndex]);
 
+  const handlePngLoad = useCallback((e: SyntheticEvent<HTMLImageElement, Event>) => {
+    if(onLoad) {
+      // @ts-expect-error https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682
+      onLoad({width: e.target.naturalWidth, height: e.target.naturalHeight})
+    }
+  }, [onLoad])
+
   return (
     <VStack h='100%' w='100%' spacing='0' bg='diamond.100'>
       {apng ? (
@@ -76,7 +88,7 @@ export const APNGViewer = ({ src, onFrameCountChanged, frameIndex = 0, fallbackT
         />
       ) : apng === null ? (
         fallbackToPng ? (
-          <img src={src} alt={caption} />
+          <img src={src} alt={caption} onLoad={handlePngLoad}/>
         ) : (
           <Heading alignItems='center' display='flex' h='100%' variant='notFound'>
             No Image Data Available
