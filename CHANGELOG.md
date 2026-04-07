@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.4.0] - 2026-04-07
+
+### Added 
+
+- Add `onLoad` callback for APNG viewer
+
 ## [2.3.0] - 2026-03-23
 
 ### Added 
